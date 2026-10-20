@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كشف الكذب من خلال لغة الجسد | Joe Navarro FBI Body Language Lab</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo & Tajawal for Arabic, Plus Jakarta Sans & JetBrains Mono for English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        fbi: {
+                            dark: '#070B14',
+                            card: '#0F172A',
+                            border: '#1E293B',
+                            gold: '#F59E0B',
+                            cyan: '#06B6D4',
+                            emerald: '#10B981',
+                            crimson: '#EF4444'
+                        }
+                    },
+                    fontFamily: {
+                        arabic: ['Cairo', 'sans-serif'],
+                        english: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Dynamic Font Switching based on language direction */
+        html[lang="ar"] body {
+            font-family: 'Cairo', sans-serif;
+        }
+        html[lang="en"] body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+
+        /* Animations & Radar Effects */
+        @keyframes pulseRing {
+            0% { transform: scale(0.85); opacity: 0.9; }
+            70% { transform: scale(1.75); opacity: 0; }
+            100% { transform: scale(1.75); opacity: 0; }
+        }
+        .hotspot-pulse::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 9999px;
+            background: currentColor;
+            opacity: 0.4;
+            animation: pulseRing 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+        }
+
+        @keyframes scanline {
+            0% { top: 4%; opacity: 0.3; }
+            50% { top: 92%; opacity: 0.85; }
+            100% { top: 4%; opacity: 0.3; }
+        }
+        .scanner-beam {
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #06b6d4, #f59e0b, #06b6d4, transparent);
+            box-shadow: 0 0 12px #06b6d4;
+            animation: scanline 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes footTap {
+            0%, 100% { transform: rotate(0deg) translateY(0); }
+            50% { transform: rotate(-10deg) translateY(-4px); }
+        }
+        .animate-foot-tap {
+            animation: footTap 0.45s ease-in-out infinite;
+            transform-origin: center left;
+        }
+
+        @keyframes neckTouch {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-3px, -2px); }
+        }
+        .animate-neck-touch {
+            animation: neckTouch 1.2s ease-in-out infinite;
+        }
+
+        /* Subtle grid pattern for FBI dossier vibe */
+        .bg-grid-pattern {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-fbi-dark dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950 bg-grid-pattern">
+
+    <!-- ================= TOP NAVIGATION BAR ================= -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/85 dark:bg-slate-950/85 border-b border-slate-200 dark:border-slate-800/80 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
+            <!-- Brand Logo & Title -->
+            <a href="#hero" class="flex items-center gap-3 group focus:outline-none">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-amber-500/25 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-user-secret"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-mono uppercase tracking-widest px-2 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 font-bold" id="nav-badge">
+                            مختبر تحليل السلوك FBI
+                        </span>
+                    </div>
+                    <h1 class="text-sm sm:text-lg font-extrabold tracking-tight text-slate-900 dark:text-white line-clamp-1" id="nav-title">
+                        كشف الكذب من خلال لغة الجسد
+                    </h1>
+                </div>
+            </a>
+
+            <!-- Quick Desktop Navigation Links -->
+            <nav class="hidden xl:flex items-center gap-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                <a href="#opening-scene" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/70 hover:text-amber-500 transition-colors" data-i18n="nav_scene">المشهد الافتتاحي</a>
+                <a href="#body-scanner" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/70 hover:text-amber-500 transition-colors" data-i18n="nav_scanner">ماسح صدق الجسد</a>
+                <a href="#limbic-lab" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/70 hover:text-amber-500 transition-colors" data-i18n="nav_limbic">الجهاز الحوفي</a>
+                <a href="#signal-analyzer" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/70 hover:text-amber-500 transition-colors" data-i18n="nav_analyzer">محلل الإشارات</a>
+                <a href="#fbi-quiz" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/70 hover:text-amber-500 transition-colors" data-i18n="nav_quiz">اختبر عينك كمحقق</a>
+                <a href="#timeline" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/70 hover:text-amber-500 transition-colors" data-i18n="nav_timeline">ملخص الفيديو</a>
+            </nav>
+
+            <!-- Action Controls: Language Toggle & Dark/Light Mode -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Language Switcher Button -->
+                <button id="lang-toggle" onclick="toggleLanguage()" class="flex items-center gap-2 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 border border-slate-300/80 dark:border-slate-700 transition-all shadow-sm active:scale-95" title="Switch Language / تغيير اللغة">
+                    <i class="fa-solid fa-earth-americas text-cyan-500"></i>
+                    <span id="lang-btn-text">English</span>
+                </button>
+
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" onclick="toggleTheme()" class="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-amber-500 dark:text-amber-400 border border-slate-300/80 dark:border-slate-700 transition-all shadow-sm active:scale-95" aria-label="Toggle Dark Mode" title="Dark / Light Mode">
+                    <i id="theme-icon" class="fa-solid fa-sun text-lg"></i>
+                </button>
+
+                <!-- Watch Video Direct Link -->
+                <a href="https://youtu.be/RErtCs799r4?si=_f6_xUU34d53llbM" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-red-600 hover:bg-red-500 text-white shadow-md shadow-red-600/25 transition-all active:scale-95">
+                    <i class="fa-brands fa-youtube text-base"></i>
+                    <span data-i18n="watch_video_short">الفيديو الأصلي</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT CONTAINER ================= -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-16 sm:space-y-24">
+
+        <!-- 1. HERO SECTION & OPENING SCENE X-RAY VISUALIZER [00:00:00] -->
+        <section id="hero" class="relative rounded-3xl overflow-hidden bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-2xl p-6 sm:p-10 lg:p-12">
+            <!-- Decorative ambient glow -->
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+                <!-- Hero Text Column -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex flex-wrap items-center gap-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span data-i18n="hero_tag">منهجية العميل الفيدرالي جو نافارو (Joe Navarro)</span>
+                        </span>
+                        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30">
+                            Abouawd Studio • 07:00
+                        </span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight text-slate-900 dark:text-white" data-i18n="hero_title">
+                        كيف تكشف الكذب وتقرأ <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-400 to-cyan-400">الحقيقة الصامتة</span> من خلال لغة الجسد؟
+                    </h2>
+
+                    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="hero_desc">
+                        الكلمات يمكن تزييفها بسهولة، والابتسامة قد تكون قناعاً مثالياً.. لكن الجسد مرتبط مباشرة بـ <strong>الجهاز الحوفي (Limbic Brain)</strong> الذي يفضح التوتر والقلق تلقائياً بدون استئذان. استكشف الدليل العملي الكامل لقراءة البشر كما يفعل محققو الـ FBI.
+                    </p>
+
+                    <!-- Key Statistics Badges from Video -->
+                    <div class="grid grid-cols-3 gap-3 pt-2">
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700/70">
+                            <div class="text-2xl sm:text-3xl font-black text-emerald-500 font-mono">95%</div>
+                            <div class="text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 mt-0.5" data-i18n="stat_feet">صدق حركة القدمين</div>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700/70">
+                            <div class="text-2xl sm:text-3xl font-black text-amber-500 font-mono">3</div>
+                            <div class="text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 mt-0.5" data-i18n="stat_instincts">استجابات حوفية تلقائية</div>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700/70">
+                            <div class="text-2xl sm:text-3xl font-black text-cyan-500 font-mono">0%</div>
+                            <div class="text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 mt-0.5" data-i18n="stat_single">دليل كذب من إشارة منفردة</div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <a href="#body-scanner" class="px-6 py-3.5 rounded-2xl font-extrabold text-sm sm:text-base bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 shadow-lg shadow-amber-500/25 flex items-center gap-2 transition-all active:scale-95">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                            <span data-i18n="btn_start_scanner">ابدأ فحص لغة الجسد التفاعلي</span>
+                        </a>
+                        <a href="https://youtu.be/RErtCs799r4?si=_f6_xUU34d53llbM" target="_blank" rel="noopener noreferrer" class="px-5 py-3.5 rounded-2xl font-bold text-sm sm:text-base bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white border border-slate-300 dark:border-slate-700 flex items-center gap-2 transition-all active:scale-95">
+                            <i class="fa-brands fa-youtube text-red-500 text-lg"></i>
+                            <span data-i18n="btn_watch_yt">مشاهدة الفيديو على يوتيوب</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Interactive Opening Scene Visualizer [00:00:00] -->
+                <div id="opening-scene" class="lg:col-span-6">
+                    <div class="rounded-2xl bg-slate-100 dark:bg-slate-950/90 border-2 border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-inner relative">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500 animate-ping"></span>
+                                <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400" data-i18n="scene_badge">
+                                    محاكاة المشهد الافتتاحي [00:00:00]
+                                </span>
+                            </div>
+                            <span id="scene-status-pill" class="px-3 py-1 rounded-full text-xs font-extrabold bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+                                وضع الأشعة السينية (X-Ray)
+                            </span>
+                        </div>
+
+                        <!-- Mode Switcher Tabs for Opening Scene -->
+                        <div class="grid grid-cols-3 gap-2 p-1.5 rounded-xl bg-slate-200/80 dark:bg-slate-900 mb-5">
+                            <button onclick="setSceneMode('words')" id="scene-btn-words" class="py-2 px-2 rounded-lg text-xs sm:text-sm font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                                <i class="fa-solid fa-ear-listen me-1"></i>
+                                <span data-i18n="scene_tab_words">ما تسمعه الأذن</span>
+                            </button>
+                            <button onclick="setSceneMode('body')" id="scene-btn-body" class="py-2 px-2 rounded-lg text-xs sm:text-sm font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                                <i class="fa-solid fa-eye me-1"></i>
+                                <span data-i18n="scene_tab_body">ما تراه العين</span>
+                            </button>
+                            <button onclick="setSceneMode('xray')" id="scene-btn-xray" class="py-2 px-2 rounded-lg text-xs sm:text-sm font-bold transition-all bg-amber-500 text-slate-950 shadow">
+                                <i class="fa-solid fa-layer-group me-1"></i>
+                                <span data-i18n="scene_tab_xray">المقارنة الشاملة</span>
+                            </button>
+                        </div>
+
+                        <!-- Visual Table Scene Canvas (SVG + Overlays) -->
+                        <div class="relative rounded-xl bg-gradient-to-b from-slate-800 to-slate-950 text-white p-4 sm:p-6 overflow-hidden border border-slate-700/80 min-h-[340px] flex flex-col justify-between">
+                            
+                            <!-- Speech Bubble (Above the Table) -->
+                            <div id="scene-layer-words" class="transition-all duration-500 flex items-center justify-between gap-3 bg-emerald-500/15 border border-emerald-500/40 rounded-xl p-3.5 backdrop-blur-md">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-400 text-lg shrink-0">
+                                        <i class="fa-regular fa-face-smile-beam"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-emerald-300 uppercase" data-i18n="scene_mouth_label">الوجه والكلمات (فوق الطاولة):</div>
+                                        <div class="text-sm sm:text-base font-extrabold text-white" data-i18n="scene_mouth_quote">"أنا مرتاح جداً.. كل شيء على ما يرام!" (مع ابتسامة واثقة)</div>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-emerald-500/30 text-emerald-200 shrink-0" data-i18n="scene_fake_tag">قابل للتزييف</span>
+                            </div>
+
+                            <!-- Interactive SVG Subject Sitting at Table -->
+                            <div class="my-3 flex items-center justify-center relative">
+                                <svg viewBox="0 0 420 200" class="w-full max-w-[390px] h-auto select-none">
+                                    <!-- Upper Torso & Head -->
+                                    <circle cx="210" cy="36" r="22" fill="#38bdf8" fill-opacity="0.2" stroke="#38bdf8" stroke-width="2.5"/>
+                                    <!-- Smile on Face -->
+                                    <path d="M202 40 Q210 48 218 40" stroke="#10b981" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                    <circle cx="203" cy="31" r="2.2" fill="#e2e8f0"/>
+                                    <circle cx="217" cy="31" r="2.2" fill="#e2e8f0"/>
+
+                                    <!-- Neck (Pacifying Zone) -->
+                                    <rect x="203" y="58" width="14" height="14" rx="4" fill="#ef4444" fill-opacity="0.4" stroke="#ef4444" stroke-width="1.5"/>
+                                    
+                                    <!-- Torso -->
+                                    <path d="M170 72 C170 68 250 68 250 72 L258 115 L162 115 Z" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+
+                                    <!-- Hand 1 touching neck unconsciously [00:00:13] -->
+                                    <g id="svg-neck-cue" class="animate-neck-touch">
+                                        <path d="M168 85 Q150 65 198 63" fill="none" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
+                                        <circle cx="200" cy="63" r="6" fill="#ef4444" />
+                                    </g>
+
+                                    <!-- THE TABLE LINE -->
+                                    <line x1="20" y1="115" x2="400" y2="115" stroke="#94a3b8" stroke-width="5" stroke-linecap="round"/>
+                                    <rect x="30" y="118" width="360" height="78" rx="8" fill="#0f172a" fill-opacity="0.75" stroke="#334155" stroke-dasharray="4 4"/>
+
+                                    <!-- Under the Table: Hidden Hand 2 & Rapidly Moving Feet -->
+                                    <g id="svg-under-table">
+                                        <!-- Hidden Hand under table -->
+                                        <path d="M248 85 Q265 118 235 135" fill="none" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
+                                        <circle cx="233" cy="136" r="5.5" fill="#f59e0b"/>
+
+                                        <!-- Legs -->
+                                        <path d="M192 118 L182 172" stroke="#64748b" stroke-width="7" stroke-linecap="round"/>
+                                        <path d="M228 118 L242 172" stroke="#64748b" stroke-width="7" stroke-linecap="round"/>
+
+                                        <!-- Rapidly Tapping/Moving Feet -->
+                                        <g class="animate-foot-tap">
+                                            <ellipse cx="174" cy="178" rx="14" ry="6" fill="#ef4444"/>
+                                            <path d="M152 172 Q145 178 152 184" stroke="#ef4444" stroke-width="2" fill="none"/>
+                                        </g>
+                                        <g class="animate-foot-tap" style="animation-delay: 0.2s;">
+                                            <ellipse cx="252" cy="178" rx="14" ry="6" fill="#ef4444"/>
+                                            <path d="M272 172 Q279 178 272 184" stroke="#ef4444" stroke-width="2" fill="none"/>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- Physical Truth Cues (Below / Hidden Cues) -->
+                            <div id="scene-layer-body" class="transition-all duration-500 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                                <div class="p-2.5 rounded-lg bg-red-500/15 border border-red-500/40 flex items-center gap-2.5">
+                                    <i class="fa-solid fa-hand-Point-up text-red-400 text-lg"></i>
+                                    <div>
+                                        <div class="text-xs font-extrabold text-red-300" data-i18n="cue_1_title">لمس الرقبة لا إرادياً</div>
+                                        <div class="text-[11px] text-slate-300" data-i18n="cue_1_desc">محاولة لتهدئة التوتر المفاجئ</div>
+                                    </div>
+                                </div>
+                                <div class="p-2.5 rounded-lg bg-amber-500/15 border border-amber-500/40 flex items-center gap-2.5">
+                                    <i class="fa-solid fa-hands-bound text-amber-400 text-lg"></i>
+                                    <div>
+                                        <div class="text-xs font-extrabold text-amber-300" data-i18n="cue_2_title">إخفاء اليد تحت الطاولة</div>
+                                        <div class="text-[11px] text-slate-300" data-i18n="cue_2_desc">انعدام الراحة والتحفظ</div>
+                                    </div>
+                                </div>
+                                <div class="p-2.5 rounded-lg bg-rose-500/15 border border-rose-500/40 flex items-center gap-2.5">
+                                    <i class="fa-solid fa-shoe-prints text-rose-400 text-lg"></i>
+                                    <div>
+                                        <div class="text-xs font-extrabold text-rose-300" data-i18n="cue_3_title">حركة سريعة للقدمين</div>
+                                        <div class="text-[11px] text-slate-300" data-i18n="cue_3_desc">الجسد يفضح القلق الحقيقي</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Insight Quote -->
+                        <p class="mt-3 text-xs sm:text-sm text-center font-semibold text-slate-600 dark:text-slate-400" id="scene-conclusion" data-i18n="scene_bottom_quote">
+                            💡 خلاصة جو نافارو [00:00:25]: "أنت سمعت الكلمات.. لكن لو كنت تفهم لغة الجسد، كنت ستعرف أن هذا الشخص يكذب أو يشعر بتوتر شديد!"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. INTERACTIVE BODY HONESTY SCANNER (ماسح صدق الجسد التفاعلي) -->
+        <section id="body-scanner" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
+                <div>
+                    <span class="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded-full bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30 font-bold" data-i18n="scanner_tag">
+                        خريطة المصداقية الجسدية • [00:01:34 - 00:05:35]
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-2" data-i18n="scanner_title">
+                        ماسح صدق الجسد التفاعلي (من الأقل صدقاً إلى الأصدق!)
+                    </h2>
+                </div>
+                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-xl" data-i18n="scanner_subtitle">
+                    اضغط على أي منطقة في النموذج الجسدي أو من القائمة الجانبية لاستكشاف نسبة مصداقيتها وأسرارها حسب كتاب جو نافارو.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                <!-- Left/Right Column: Interactive SVG Silhouette with Hotspots -->
+                <div class="lg:col-span-5 rounded-3xl bg-slate-900 text-white border border-slate-800 p-6 flex flex-col items-center justify-between relative overflow-hidden shadow-xl min-h-[520px]">
+                    <div class="scanner-beam"></div>
+
+                    <div class="w-full flex items-center justify-between text-xs font-mono text-slate-400 z-10">
+                        <span>FBI BIOMETRIC SCANNER v4.0</span>
+                        <span class="text-cyan-400 font-bold" id="scanner-active-code">ZONE: FEET [95%]</span>
+                    </div>
+
+                    <!-- Interactive Human Silhouette SVG -->
+                    <div class="relative my-4 w-full max-w-[270px] flex items-center justify-center">
+                        <svg viewBox="0 0 240 460" class="w-full h-auto drop-shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+                            <!-- Human Body Silhouette Outline -->
+                            <g fill="#1e293b" stroke="#38bdf8" stroke-width="2" stroke-opacity="0.6">
+                                <!-- Head -->
+                                <circle cx="120" cy="48" r="32" />
+                                <!-- Neck -->
+                                <rect x="108" y="80" width="24" height="20" rx="6" />
+                                <!-- Torso & Shoulders -->
+                                <path d="M68 100 C68 92 172 92 172 100 L164 235 L76 235 Z" />
+                                <!-- Left Arm -->
+                                <path d="M68 102 L42 215 L60 222 L80 128 Z" />
+                                <!-- Right Arm -->
+                                <path d="M172 102 L198 215 L180 222 L160 128 Z" />
+                                <!-- Left Hand -->
+                                <circle cx="48" cy="230" r="13" />
+                                <!-- Right Hand -->
+                                <circle cx="192" cy="230" r="13" />
+                                <!-- Left Leg -->
+                                <path d="M80 238 L85 395 L112 395 L116 238 Z" />
+                                <!-- Right Leg -->
+                                <path d="M124 238 L128 395 L155 395 L160 238 Z" />
+                                <!-- Left Foot -->
+                                <ellipse cx="92" cy="415" rx="22" ry="12" />
+                                <!-- Right Foot -->
+                                <ellipse cx="148" cy="415" rx="22" ry="12" />
+                            </g>
+
+                            <!-- Clickable SVG Hotspots -->
+                            <!-- 1. Limbic Brain -->
+                            <g onclick="selectBodyPart('brain')" class="cursor-pointer group">
+                                <circle cx="120" cy="34" r="12" fill="#a855f7" class="opacity-80 group-hover:opacity-100 transition-opacity"/>
+                                <text x="120" y="38" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">1</text>
+                            </g>
+
+                            <!-- 2. Face -->
+                            <g onclick="selectBodyPart('face')" class="cursor-pointer group">
+                                <circle cx="120" cy="62" r="12" fill="#ef4444" class="opacity-80 group-hover:opacity-100 transition-opacity"/>
+                                <text x="120" y="66" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">2</text>
+                            </g>
+
+                            <!-- 3. Neck -->
+                            <g onclick="selectBodyPart('neck')" class="cursor-pointer group">
+                                <circle cx="120" cy="90" r="12" fill="#f59e0b" class="opacity-80 group-hover:opacity-100 transition-opacity"/>
+                                <text x="120" y="94" text-anchor="middle" fill="#000" font-size="10" font-weight="bold">3</text>
+                            </g>
+
+                            <!-- 4. Shoulders & Arms -->
+                            <g onclick="selectBodyPart('shoulders')" class="cursor-pointer group">
+                                <circle cx="72" cy="115" r="13" fill="#06b6d4" class="opacity-80 group-hover:opacity-100 transition-opacity"/>
+                                <text x="72" y="119" text-anchor="middle" fill="#000" font-size="10" font-weight="bold">4</text>
+                            </g>
+
+                            <!-- 5. Hands -->
+                            <g onclick="selectBodyPart('hands')" class="cursor-pointer group">
+                                <circle cx="48" cy="230" r="14" fill="#3b82f6" class="opacity-80 group-hover:opacity-100 transition-opacity"/>
+                                <text x="48" y="234" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">5</text>
+                            </g>
+
+                            <!-- 6. Feet (Most Honest!) -->
+                            <g onclick="selectBodyPart('feet')" class="cursor-pointer group">
+                                <circle cx="148" cy="415" r="16" fill="#10b981" class="opacity-95 group-hover:opacity-100 transition-opacity"/>
+                                <text x="148" y="419" text-anchor="middle" fill="#000" font-size="11" font-weight="bold">6★</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Honesty Scale Legend -->
+                    <div class="w-full bg-slate-950/90 border border-slate-800 rounded-2xl p-3.5 text-xs space-y-2 z-10">
+                        <div class="flex items-center justify-between font-bold text-slate-300">
+                            <span data-i18n="scanner_legend_low">الوجه (الأسهل تزييفاً)</span>
+                            <span data-i18n="scanner_legend_high">القدمان (الأصدق 95%)</span>
+                        </div>
+                        <div class="w-full h-2.5 rounded-full bg-gradient-to-r from-red-500 via-amber-500 to-emerald-500"></div>
+                    </div>
+                </div>
+
+                <!-- Right/Left Column: Part Selector Buttons & Detailed Dossier Card -->
+                <div class="lg:col-span-7 flex flex-col justify-between gap-6">
+                    <!-- 6 Quick Selection Buttons -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="body-part-buttons">
+                        <!-- Dynamically highlighted via JS -->
+                        <button onclick="selectBodyPart('brain')" id="btn-part-brain" class="p-3.5 rounded-2xl border text-start transition-all flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 font-bold flex items-center justify-center shrink-0">1</span>
+                            <div>
+                                <div class="font-extrabold text-xs sm:text-sm" data-i18n="part_brain_short">الجهاز الحوفي</div>
+                                <div class="text-[11px] opacity-75 font-mono">00:01:34</div>
+                            </div>
+                        </button>
+                        <button onclick="selectBodyPart('face')" id="btn-part-face" class="p-3.5 rounded-2xl border text-start transition-all flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-red-500/20 text-red-400 font-bold flex items-center justify-center shrink-0">2</span>
+                            <div>
+                                <div class="font-extrabold text-xs sm:text-sm" data-i18n="part_face_short">الوجه والابتسامة</div>
+                                <div class="text-[11px] opacity-75 font-mono">00:05:22</div>
+                            </div>
+                        </button>
+                        <button onclick="selectBodyPart('neck')" id="btn-part-neck" class="p-3.5 rounded-2xl border text-start transition-all flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center shrink-0">3</span>
+                            <div>
+                                <div class="font-extrabold text-xs sm:text-sm" data-i18n="part_neck_short">منطقة الرقبة</div>
+                                <div class="text-[11px] opacity-75 font-mono">00:04:53</div>
+                            </div>
+                        </button>
+                        <button onclick="selectBodyPart('shoulders')" id="btn-part-shoulders" class="p-3.5 rounded-2xl border text-start transition-all flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 font-bold flex items-center justify-center shrink-0">4</span>
+                            <div>
+                                <div class="font-extrabold text-xs sm:text-sm" data-i18n="part_shoulders_short">الكتفان والذراعان</div>
+                                <div class="text-[11px] opacity-75 font-mono">00:04:40</div>
+                            </div>
+                        </button>
+                        <button onclick="selectBodyPart('hands')" id="btn-part-hands" class="p-3.5 rounded-2xl border text-start transition-all flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 font-bold flex items-center justify-center shrink-0">5</span>
+                            <div>
+                                <div class="font-extrabold text-xs sm:text-sm" data-i18n="part_hands_short">حركة اليدين</div>
+                                <div class="text-[11px] opacity-75 font-mono">00:00:13</div>
+                            </div>
+                        </button>
+                        <button onclick="selectBodyPart('feet')" id="btn-part-feet" class="p-3.5 rounded-2xl border text-start transition-all flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center shrink-0">6★</span>
+                            <div>
+                                <div class="font-extrabold text-xs sm:text-sm" data-i18n="part_feet_short">القدمان (الأصدق!)</div>
+                                <div class="text-[11px] opacity-75 font-mono">00:02:46</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Details Card -->
+                    <div class="flex-grow rounded-3xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-xl flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span id="detail-timestamp" class="px-3 py-1 rounded-lg font-mono text-xs font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+                                    [00:02:46]
+                                </span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400" data-i18n="honesty_index_label">مؤشر الصدق التلقائي:</span>
+                                    <span id="detail-honesty-badge" class="px-3 py-1 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+                                        95% (الأصدق في الجسد)
+                                    </span>
+                                </div>
+                            </div>
+
+                            <h3 id="detail-title" class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+                                القدمان: أصدق جزء في جسد الإنسان!
+                            </h3>
+
+                            <!-- Honesty Progress Bar -->
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-3 rounded-full overflow-hidden">
+                                <div id="detail-progress-bar" class="h-full bg-emerald-500 transition-all duration-500" style="width: 95%;"></div>
+                            </div>
+
+                            <p id="detail-description" class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                                مفاجأة كتاب جو نافارو! الناس بارعون جداً في تمثيل تعابير الوجه، لكن لا أحد تقريباً ينتبه لقدميه أثناء الحديث. لذلك تظل القدمان أكثر جزء صادق يفضح الرغبة الحقيقية في البقاء أو الهروب.
+                            </p>
+                        </div>
+
+                        <!-- Practical Video Example Box -->
+                        <div class="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 space-y-2">
+                            <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-extrabold text-sm">
+                                <i class="fa-solid fa-lightbulb"></i>
+                                <span data-i18n="scanner_example_header">مثال عملي من الفيديو:</span>
+                            </div>
+                            <p id="detail-example" class="text-sm sm:text-base text-slate-700 dark:text-slate-300 font-medium">
+                                [00:03:18] إذا كنت تتحدث مع شخص وهو يبتسم ويهز رأسه موافقاً، لكن قدميه تتجهان نحو الباب.. فالحقيقة هي أنه يريد إنهاء الحوار والمغادرة فوراً حتى لو قال العكس!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. THE LIMBIC SYSTEM LAB: FREEZE, FLIGHT, FIGHT [00:01:58] -->
+        <section id="limbic-lab" class="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white border border-slate-800 p-6 sm:p-10 lg:p-12 shadow-2xl space-y-8">
+            <div class="max-w-3xl space-y-3">
+                <span class="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase bg-purple-500/20 text-purple-300 border border-purple-500/30" data-i18n="limbic_badge">
+                    مختبر الجهاز الحوفي (The Limbic Brain) • [00:01:58]
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black" data-i18n="limbic_title">
+                    الاستجابات الثلاث للبقاء: التجمد، الهروب، القتال
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed" data-i18n="limbic_subtitle">
+                    الجهاز الحوفي هو الجزء المسؤول عن المشاعر والبقاء في الدماغ، ويعمل <strong>بشكل تلقائي تماماً بدون تفكير</strong>. قديماً كان يحمي الإنسان من الحيوانات المفترسة عبر 3 استجابات، واليوم تظهر نفس هذه الاستجابات الثلاث داخل المحادثات اليومية!
+                </p>
+            </div>
+
+            <!-- 3 Interactive Instinct Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1: Freeze (التجمد) -->
+                <div class="rounded-2xl bg-slate-800/60 hover:bg-slate-800 border border-cyan-500/30 p-6 flex flex-col justify-between transition-all group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-snowflake"></i>
+                            </div>
+                            <span class="font-mono text-xs font-bold px-2.5 py-1 rounded bg-cyan-500/15 text-cyan-300">01 • FREEZE</span>
+                        </div>
+                        <h3 class="text-xl font-black text-white" data-i18n="freeze_title">1. التجمد (Freeze)</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" data-i18n="freeze_ancient">
+                            <strong>في الطبيعة قديماً:</strong> الثبات التام عند رؤية مفترس حتى لا يلاحظ الحركة.
+                        </p>
+                        <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-700/70 space-y-2">
+                            <div class="text-xs font-extrabold text-cyan-400" data-i18n="in_modern_chat">كيف يظهر في المحادثات اليومية؟ [00:02:18]</div>
+                            <ul class="text-xs sm:text-sm text-slate-200 space-y-1.5 list-disc list-inside">
+                                <li data-i18n="freeze_b1">توقف الشخص فجأة عن الحركة عند سماع سؤال محرج.</li>
+                                <li data-i18n="freeze_b2">حبس الأنفاس أو التنفس السطحي البطيء.</li>
+                                <li data-i18n="freeze_b3">إخفاء اليدين تحت الطاولة أو تشبيك الكاحلين بشدة.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Flight (الهروب) -->
+                <div class="rounded-2xl bg-slate-800/60 hover:bg-slate-800 border border-amber-500/30 p-6 flex flex-col justify-between transition-all group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-person-running"></i>
+                            </div>
+                            <span class="font-mono text-xs font-bold px-2.5 py-1 rounded bg-amber-500/15 text-amber-300">02 • FLIGHT</span>
+                        </div>
+                        <h3 class="text-xl font-black text-white" data-i18n="flight_title">2. الهروب (Flight)</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" data-i18n="flight_ancient">
+                            <strong>في الطبيعة قديماً:</strong> الابتعاد والركض بأقصى سرعة بعيداً عن مصدر التهديد.
+                        </p>
+                        <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-700/70 space-y-2">
+                            <div class="text-xs font-extrabold text-amber-400" data-i18n="in_modern_chat_2">كيف يظهر في المحادثات اليومية؟ [00:02:25]</div>
+                            <ul class="text-xs sm:text-sm text-slate-200 space-y-1.5 list-disc list-inside">
+                                <li data-i18n="flight_b1">ميل الجسد للخلف والابتعاد قليلاً عن المتحدث.</li>
+                                <li data-i18n="flight_b2">اتجاه القدمين نحو باب الخروج أثناء الحديث.</li>
+                                <li data-i18n="flight_b3">تجنب النظر في العين أو فرك العينين لحجب الرؤية.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Fight (القتال) -->
+                <div class="rounded-2xl bg-slate-800/60 hover:bg-slate-800 border border-rose-500/30 p-6 flex flex-col justify-between transition-all group">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-2xl bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400 text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-hand-fist"></i>
+                            </div>
+                            <span class="font-mono text-xs font-bold px-2.5 py-1 rounded bg-rose-500/15 text-rose-300">03 • FIGHT</span>
+                        </div>
+                        <h3 class="text-xl font-black text-white" data-i18n="fight_title">3. القتال (Fight)</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" data-i18n="fight_ancient">
+                            <strong>في الطبيعة قديماً:</strong> المواجهة الهجومية المباشرة عند استحالة التجمد أو الهروب.
+                        </p>
+                        <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-700/70 space-y-2">
+                            <div class="text-xs font-extrabold text-rose-400" data-i18n="in_modern_chat_3">كيف يظهر في المحادثات اليومية؟ [00:02:32]</div>
+                            <ul class="text-xs sm:text-sm text-slate-200 space-y-1.5 list-disc list-inside">
+                                <li data-i18n="fight_b1">تحريك القدم أو النقر بها بعصبية شديدة.</li>
+                                <li data-i18n="fight_b2">شد الكتفين والفك واتخاذ وضعية جسدية متصلبة.</li>
+                                <li data-i18n="fight_b3">الاندفاع للأمام أو التحديق الحاد لتخويف الطرف الآخر.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. INTERACTIVE FBI SIGNAL ANALYZER & BASELINE CALCULATOR [00:03:50 - 00:06:12] -->
+        <section id="signal-analyzer" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
+                <div>
+                    <span class="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 font-bold" data-i18n="analyzer_tag">
+                        أداة التحقيق التفاعلية • [00:03:50 - 00:06:12]
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-2" data-i18n="analyzer_title">
+                        محلل الإشارات ومقياس التوتر التفاعلي (FBI Signal Cluster Lab)
+                    </h2>
+                </div>
+                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-xl" data-i18n="analyzer_subtitle">
+                    القاعدة الأهم في الفيديو: <strong>"لا توجد حركة واحدة تثبت الكذب!"</strong> حدد الإشارات التي تلاحظها مع السياق المحيط لترى كيف يحللها خبراء السلوك.
+                </p>
+            </div>
+
+            <!-- Preset Quick-Load Scenarios -->
+            <div class="flex flex-wrap items-center gap-2">
+                <span class="text-xs font-bold text-slate-500 dark:text-slate-400 me-1" data-i18n="preset_label">تجربة سريعة لمشاهد الفيديو:</span>
+                <button onclick="applyPreset('intro')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-500/15 hover:bg-amber-500/25 text-amber-600 dark:text-amber-400 border border-amber-500/30 transition-all" data-i18n="preset_1">
+                    🎬 مشهد الطاولة الافتتاحي [00:00:00]
+                </button>
+                <button onclick="applyPreset('cold')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30 transition-all" data-i18n="preset_2">
+                    ❄️ فخ الغرفة الباردة [00:05:47]
+                </button>
+                <button onclick="applyPreset('comfortable')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 transition-all" data-i18n="preset_3">
+                    😊 شخص صادق ومرتاح [00:04:40]
+                </button>
+                <button onclick="applyPreset('reset')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all" data-i18n="preset_reset">
+                    إعادة ضبط
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Checkboxes List of Observed Cues -->
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <!-- Cue 1: Baseline Shift -->
+                    <label class="cursor-pointer p-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 hover:border-amber-500/60 transition-all flex items-start gap-3 select-none">
+                        <input type="checkbox" id="chk-shift" onchange="calculateSignals()" class="mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+                        <div>
+                            <div class="font-extrabold text-sm text-slate-900 dark:text-white" data-i18n="chk_shift_t">تغير مفاجئ في السلوك بعد السؤال</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="chk_shift_d">[00:04:14] كان هادئاً ثم تغيرت حركته فجأة</div>
+                        </div>
+                    </label>
+
+                    <!-- Cue 2: Neck Touching -->
+                    <label class="cursor-pointer p-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 hover:border-amber-500/60 transition-all flex items-start gap-3 select-none">
+                        <input type="checkbox" id="chk-neck" onchange="calculateSignals()" class="mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+                        <div>
+                            <div class="font-extrabold text-sm text-slate-900 dark:text-white" data-i18n="chk_neck_t">لمس الرقبة أو الياقة لا إرادياً</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="chk_neck_d">[00:04:53] محاولة الجسد لتهدئة التوتر</div>
+                        </div>
+                    </label>
+
+                    <!-- Cue 3: Rapid Feet Movement -->
+                    <label class="cursor-pointer p-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 hover:border-amber-500/60 transition-all flex items-start gap-3 select-none">
+                        <input type="checkbox" id="chk-feet-move" onchange="calculateSignals()" class="mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+                        <div>
+                            <div class="font-extrabold text-sm text-slate-900 dark:text-white" data-i18n="chk_feet_move_t">حركة سريعة أو عصبية للقدمين</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="chk_feet_move_d">[00:00:13] تفريغ شحنة القلق تحت الطاولة</div>
+                        </div>
+                    </label>
+
+                    <!-- Cue 4: Feet Pointing to Door -->
+                    <label class="cursor-pointer p-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 hover:border-amber-500/60 transition-all flex items-start gap-3 select-none">
+                        <input type="checkbox" id="chk-feet-door" onchange="calculateSignals()" class="mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+                        <div>
+                            <div class="font-extrabold text-sm text-slate-900 dark:text-white" data-i18n="chk_feet_door_t">القدمان تتجهان نحو باب الخروج</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="chk_feet_door_d">[00:03:18] رغبة حقيقية في الهروب وإنهاء الحوار</div>
+                        </div>
+                    </label>
+
+                    <!-- Cue 5: Hiding Hands / Scratching Face -->
+                    <label class="cursor-pointer p-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 hover:border-amber-500/60 transition-all flex items-start gap-3 select-none">
+                        <input type="checkbox" id="chk-hands" onchange="calculateSignals()" class="mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+                        <div>
+                            <div class="font-extrabold text-sm text-slate-900 dark:text-white" data-i18n="chk_hands_t">إخفاء اليدين أو حك الوجه</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="chk_hands_d">[00:03:58] إشارات تحفظ وانزعاج</div>
+                        </div>
+                    </label>
+
+                    <!-- Cue 6: Avoiding Eye Contact -->
+                    <label class="cursor-pointer p-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 hover:border-amber-500/60 transition-all flex items-start gap-3 select-none">
+                        <input type="checkbox" id="chk-eyes" onchange="calculateSignals()" class="mt-1 w-5 h-5 accent-amber-500 rounded cursor-pointer">
+                        <div>
+                            <div class="font-extrabold text-sm text-slate-900 dark:text-white" data-i18n="chk_eyes_t">تجنب النظر في العين فجأة</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="chk_eyes_d">[00:03:58] هروب بصري مؤقت</div>
+                        </div>
+                    </label>
+
+                    <!-- Cue 7: Crossed Arms -->
+                    <label class="cursor-pointer p-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 hover:border-cyan-500/60 transition-all flex items-start gap-3 select-none">
+                        <input type="checkbox" id="chk-arms" onchange="calculateSignals()" class="mt-1 w-5 h-5 accent-cyan-500 rounded cursor-pointer">
+                        <div>
+                            <div class="font-extrabold text-sm text-slate-900 dark:text-white" data-i18n="chk_arms_t">طي الذراعين (تكتيف اليدين)</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="chk_arms_d">[00:05:47] قد يكون تحفظاً أو بسبب البرد!</div>
+                        </div>
+                    </label>
+
+                    <!-- Cue 8: Environmental Context - Cold Room -->
+                    <label class="cursor-pointer p-4 rounded-2xl bg-cyan-500/10 border-2 border-cyan-500/40 hover:border-cyan-400 transition-all flex items-start gap-3 select-none">
+                        <input type="checkbox" id="chk-cold" onchange="calculateSignals()" class="mt-1 w-5 h-5 accent-cyan-500 rounded cursor-pointer">
+                        <div>
+                            <div class="font-extrabold text-sm text-cyan-800 dark:text-cyan-300" data-i18n="chk_cold_t">❄️ عامل السياق: الغرفة باردة (تكييف)</div>
+                            <div class="text-xs text-cyan-700 dark:text-cyan-400 mt-0.5" data-i18n="chk_cold_d">[00:05:55] يلغي تفسير طي الذراعين كتحفظ!</div>
+                        </div>
+                    </label>
+
+                    <!-- Cue 9: Open & Relaxed Posture -->
+                    <label class="cursor-pointer p-4 rounded-2xl bg-emerald-500/10 border-2 border-emerald-500/40 hover:border-emerald-400 transition-all flex items-start gap-3 select-none sm:col-span-2">
+                        <input type="checkbox" id="chk-relaxed" onchange="calculateSignals()" class="mt-1 w-5 h-5 accent-emerald-500 rounded cursor-pointer">
+                        <div>
+                            <div class="font-extrabold text-sm text-emerald-800 dark:text-emerald-300" data-i18n="chk_relaxed_t">✨ أكتاف مسترخية ووضعية جسد مفتوحة</div>
+                            <div class="text-xs text-emerald-700 dark:text-emerald-400 mt-0.5" data-i18n="chk_relaxed_d">[00:04:40] مؤشر قوي على الشعور بالأمان والراحة الحقيقية</div>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Real-Time Diagnostic Result Panel -->
+                <div class="lg:col-span-5 rounded-3xl bg-slate-900 text-white border-2 border-slate-800 p-6 sm:p-8 shadow-2xl space-y-6 sticky top-24">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                        <div>
+                            <div class="text-xs font-mono text-amber-400 uppercase" data-i18n="diag_header">تقرير التشخيص السلوكي</div>
+                            <h3 class="text-xl font-black mt-0.5" data-i18n="diag_subheader">مقياس التوتر والصدق</h3>
+                        </div>
+                        <div class="text-end">
+                            <span id="cluster-count-badge" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-slate-800 text-cyan-400 border border-slate-700">
+                                3 Cues
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Stress Meter Bar -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs font-bold">
+                            <span class="text-emerald-400" data-i18n="meter_comfort">راحة واطمئنان</span>
+                            <span id="stress-score-text" class="font-mono text-amber-400 text-sm">65% مؤشر التوتر</span>
+                            <span class="text-rose-400" data-i18n="meter_stress">توتر / إخفاء حقيقة</span>
+                        </div>
+                        <div class="w-full h-4 rounded-full bg-slate-800 overflow-hidden p-0.5">
+                            <div id="stress-meter-bar" class="h-full rounded-full bg-gradient-to-r from-emerald-500 via-amber-500 to-rose-500 transition-all duration-500" style="width: 65%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Verdict Box -->
+                    <div id="verdict-box" class="p-4 rounded-2xl bg-amber-500/15 border border-amber-500/40 space-y-2">
+                        <div id="verdict-title" class="font-black text-base text-amber-300">
+                            ⚠️ مجموعة إشارات توتر عالية (Cluster Detected)
+                        </div>
+                        <p id="verdict-desc" class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                            اجتماع تغير السلوك المفاجئ مع لمس الرقبة وحركة القدمين يدل على أن السؤال سبب قلقاً شديداً. تذكر قاعدة جو نافارو: التوتر لا يثبت الكذب وحده، لكنه يخبرك أين تركز أسئلتك التالية!
+                        </p>
+                    </div>
+
+                    <!-- Golden Rules Reminder -->
+                    <div class="space-y-2 pt-2 border-t border-slate-800 text-xs text-slate-400">
+                        <div class="font-bold text-slate-200" data-i18n="rules_reminder_title">قواعد جو نافارو الذهبية الثلاث:</div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check-double text-amber-400"></i>
+                            <span data-i18n="rule_1_txt">1. ابحث عن مجموعة إشارات (Clusters) وليس حركة منفردة.</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-cyan-400"></i>
+                            <span data-i18n="rule_2_txt">2. راقب التغير المفاجئ في السلوك بعد طرح السؤال مباشرة.</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-temperature-low text-emerald-400"></i>
+                            <span data-i18n="rule_3_txt">3. ضع السياق والبيئة المحيطة أولاً قبل إصدار أي حكم.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. INTERACTIVE FBI QUIZ ("اختبر عينك كمحقق FBI") -->
+        <section id="fbi-quiz" class="rounded-3xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 p-6 sm:p-10 lg:p-12 shadow-xl space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <span class="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 font-bold" data-i18n="quiz_tag">
+                        اختبار عملي تفاعلي • 5 قضايا من الفيديو
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-2" data-i18n="quiz_title">
+                        اختبر عينك كمحقق فيدرالي (FBI Body Language Quiz)
+                    </h2>
+                </div>
+                <div class="flex items-center gap-3 bg-slate-100 dark:bg-slate-800 px-4 py-2.5 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <i class="fa-solid fa-award text-amber-500 text-xl"></i>
+                    <div>
+                        <div class="text-[11px] font-bold text-slate-500 dark:text-slate-400" data-i18n="quiz_score_label">النتيجة الحالية</div>
+                        <div id="quiz-score-display" class="text-base font-black font-mono text-slate-900 dark:text-white">0 / 5</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Container -->
+            <div id="quiz-active-area" class="space-y-6">
+                <!-- Progress Indicator -->
+                <div class="flex items-center justify-between text-xs font-bold text-slate-500 dark:text-slate-400">
+                    <span id="quiz-step-label">القضية 1 من 5</span>
+                    <span id="quiz-timestamp-badge" class="font-mono text-amber-500">[00:00:00]</span>
+                </div>
+                <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                    <div id="quiz-progress-bar" class="h-full bg-gradient-to-r from-amber-500 to-cyan-500 transition-all duration-300" style="width: 20%;"></div>
+                </div>
+
+                <!-- Question Title -->
+                <h3 id="quiz-question-text" class="text-lg sm:text-2xl font-extrabold text-slate-900 dark:text-white leading-snug">
+                    ...
+                </h3>
+
+                <!-- Answer Options Grid -->
+                <div id="quiz-options-grid" class="grid grid-cols-1 gap-3.5">
+                    <!-- Rendered dynamically via JS -->
+                </div>
+
+                <!-- Instant Explanation Box (Hidden until answered) -->
+                <div id="quiz-feedback-box" class="hidden p-5 rounded-2xl border space-y-3 transition-all">
+                    <div id="quiz-feedback-title" class="font-black text-base"></div>
+                    <p id="quiz-feedback-desc" class="text-sm sm:text-base leading-relaxed"></p>
+                    <button onclick="nextQuizQuestion()" id="quiz-next-btn" class="px-5 py-2.5 rounded-xl font-extrabold text-sm bg-amber-500 hover:bg-amber-400 text-slate-950 shadow transition-all">
+                        القضية التالية <i class="fa-solid fa-arrow-left ms-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Final Quiz Summary Card (Hidden until completion) -->
+            <div id="quiz-result-area" class="hidden text-center py-8 space-y-6">
+                <div class="w-20 h-20 rounded-3xl bg-amber-500/20 border-2 border-amber-500 text-amber-500 text-4xl flex items-center justify-center mx-auto shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <div class="space-y-2">
+                    <div id="quiz-final-rank" class="text-xs font-mono uppercase tracking-widest text-amber-500 font-bold">RANK: SENIOR FBI PROFILER</div>
+                    <h3 id="quiz-final-title" class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white">أحسنت! لقد أتممت الاختبار بنجاح</h3>
+                    <p id="quiz-final-desc" class="text-slate-600 dark:text-slate-300 max-w-lg mx-auto text-sm sm:text-base"></p>
+                </div>
+                <button onclick="restartQuiz()" class="px-6 py-3 rounded-2xl font-extrabold text-sm bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-lg shadow-amber-500/25 transition-all">
+                    <i class="fa-solid fa-rotate-right me-1.5"></i>
+                    <span data-i18n="quiz_retry_btn">إعادة الاختبار مرة أخرى</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 6. VIDEO TIMELINE & KEY CHAPTERS SUMMARY [00:00:00 - 00:06:36] -->
+        <section id="timeline" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
+                <div>
+                    <span class="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded-full bg-purple-500/15 text-purple-600 dark:text-purple-400 border border-purple-500/30 font-bold" data-i18n="timeline_tag">
+                        الفهرس الزمني الكامل للفيديو • 10 محطات رئيسية
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-2" data-i18n="timeline_title">
+                        ملخص فصول الفيديو خطوة بخطوة (مع الروابط الزمنية)
+                    </h2>
+                </div>
+                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-xl" data-i18n="timeline_subtitle">
+                    اضغط على أي توقيت زمني للانتقال مباشرة إلى تلك اللحظة في الفيديو الأصلي على يوتيوب.
+                </p>
+            </div>
+
+            <div id="timeline-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Populated dynamically via JS for seamless bilingual switching -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER WITH REQUIRED SIGNATURE ================= -->
+    <footer class="mt-16 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center space-y-6">
+            
+            <!-- Prominent Designer Credit Banner (Mandatory User Requirement) -->
+            <div class="w-full max-w-2xl p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-amber-500/10 via-cyan-500/10 to-amber-500/10 border-2 border-amber-500/40 shadow-xl flex flex-col items-center justify-center space-y-2">
+                <div class="flex items-center gap-2 text-amber-500 text-sm font-mono uppercase tracking-widest font-bold">
+                    <i class="fa-solid fa-sparkles"></i>
+                    <span>OFFICIAL DESIGN & DEVELOPMENT CREDIT</span>
+                    <i class="fa-solid fa-sparkles"></i>
+                </div>
+                <p class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-wide">
+                    تصميم محمد عوض خير بمساعدة Gemini 4 Argon
+                </p>
+                <p id="footer-en-subcredit" class="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400">
+                    Designed by Mohamed Awad Khair with the help of Gemini 4 Argon
+                </p>
+            </div>
+
+            <!-- Source Video & Book Attribution -->
+            <div class="flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                <span data-i18n="footer_source">المحتوى العلمي مستند إلى كتاب "What Every BODY is Saying" للعميل الفيدرالي جو نافارو</span>
+                <span>•</span>
+                <a href="https://youtu.be/RErtCs799r4?si=_f6_xUU34d53llbM" target="_blank" rel="noopener noreferrer" class="text-amber-600 dark:text-amber-400 hover:underline font-bold flex items-center gap-1.5">
+                    <i class="fa-brands fa-youtube text-red-500"></i>
+                    <span data-i18n="footer_yt_link">قناة Abouawd Studio على يوتيوب</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= JAVASCRIPT LOGIC & BILINGUAL ENGINE ================= -->
+    <script>
+        // Current State
+        let currentLang = 'ar';
+        let currentSceneMode = 'xray';
+        let currentBodyPart = 'feet';
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+        let quizAnswered = false;
+
+        // 1. Complete Bilingual Dictionary (Arabic & English)
+        const i18n = {
+            ar: {
+                nav_badge: "مختبر تحليل السلوك FBI",
+                nav_title: "كشف الكذب من خلال لغة الجسد",
+                nav_scene: "المشهد الافتتاحي",
+                nav_scanner: "ماسح صدق الجسد",
+                nav_limbic: "الجهاز الحوفي",
+                nav_analyzer: "محلل الإشارات",
+                nav_quiz: "اختبر عينك كمحقق",
+                nav_timeline: "ملخص الفيديو",
+                watch_video_short: "الفيديو الأصلي",
+                hero_tag: "منهجية العميل الفيدرالي جو نافارو (Joe Navarro)",
+                hero_title: 'كيف تكشف الكذب وتقرأ <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-400 to-cyan-400">الحقيقة الصامتة</span> من خلال لغة الجسد؟',
+                hero_desc: 'الكلمات يمكن تزييفها بسهولة، والابتسامة قد تكون قناعاً مثالياً.. لكن الجسد مرتبط مباشرة بـ <strong>الجهاز الحوفي (Limbic Brain)</strong> الذي يفضح التوتر والقلق تلقائياً بدون استئذان. استكشف الدليل العملي الكامل لقراءة البشر كما يفعل محققو الـ FBI.',
+                stat_feet: "صدق حركة القدمين",
+                stat_instincts: "استجابات حوفية تلقائية",
+                stat_single: "دليل كذب من إشارة منفردة",
+                btn_start_scanner: "ابدأ فحص لغة الجسد التفاعلي",
+                btn_watch_yt: "مشاهدة الفيديو على يوتيوب",
+                scene_badge: "محاكاة المشهد الافتتاحي [00:00:00]",
+                scene_tab_words: "ما تسمعه الأذن",
+                scene_tab_body: "ما تراه العين",
+                scene_tab_xray: "المقارنة الشاملة",
+                scene_mouth_label: "الوجه والكلمات (فوق الطاولة):",
+                scene_mouth_quote: '"أنا مرتاح جداً.. كل شيء على ما يرام!" (مع ابتسامة واثقة)',
+                scene_fake_tag: "قابل للتزييف",
+                cue_1_title: "لمس الرقبة لا إرادياً",
+                cue_1_desc: "محاولة لتهدئة التوتر المفاجئ",
+                cue_2_title: "إخفاء اليد تحت الطاولة",
+                cue_2_desc: "انعدام الراحة والتحفظ",
+                cue_3_title: "حركة سريعة للقدمين",
+                cue_3_desc: "الجسد يفضح القلق الحقيقي",
+                scene_bottom_quote: '💡 خلاصة جو نافارو [00:00:25]: "أنت سمعت الكلمات.. لكن لو كنت تفهم لغة الجسد، كنت ستعرف أن هذا الشخص يكذب أو يشعر بتوتر شديد!"',
+                scanner_tag: "خريطة المصداقية الجسدية • [00:01:34 - 00:05:35]",
+                scanner_title: "ماسح صدق الجسد التفاعلي (من الأقل صدقاً إلى الأصدق!)",
+                scanner_subtitle: "اضغط على أي منطقة في النموذج الجسدي أو من القائمة الجانبية لاستكشاف نسبة مصداقيتها وأسرارها حسب كتاب جو نافارو.",
+                scanner_legend_low: "الوجه (الأسهل تزييفاً 25%)",
+                scanner_legend_high: "القدمان (الأصدق 95%)",
+                part_brain_short: "الجهاز الحوفي",
+                part_face_short: "الوجه والابتسامة",
+                part_neck_short: "منطقة الرقبة",
+                part_shoulders_short: "الكتفان والذراعان",
+                part_hands_short: "حركة اليدين",
+                part_feet_short: "القدمان (الأصدق!)",
+                honesty_index_label: "مؤشر الصدق التلقائي:",
+                scanner_example_header: "مثال عملي من الفيديو:",
+                limbic_badge: "مختبر الجهاز الحوفي (The Limbic Brain) • [00:01:58]",
+                limbic_title: "الاستجابات الثلاث للبقاء: التجمد، الهروب، القتال",
+                limbic_subtitle: 'الجهاز الحوفي هو الجزء المسؤول عن المشاعر والبقاء في الدماغ، ويعمل <strong>بشكل تلقائي تماماً بدون تفكير</strong>. قديماً كان يحمي الإنسان من الحيوانات المفترسة عبر 3 استجابات، واليوم تظهر نفس هذه الاستجابات الثلاث داخل المحادثات اليومية!',
+                freeze_title: "1. التجمد (Freeze)",
+                freeze_ancient: "<strong>في الطبيعة قديماً:</strong> الثبات التام عند رؤية مفترس حتى لا يلاحظ الحركة.",
+                in_modern_chat: "كيف يظهر في المحادثات اليومية؟ [00:02:18]",
+                freeze_b1: "توقف الشخص فجأة عن الحركة عند سماع سؤال محرج.",
+                freeze_b2: "حبس الأنفاس أو التنفس السطحي البطيء.",
+                freeze_b3: "إخفاء اليدين تحت الطاولة أو تشبيك الكاحلين بشدة.",
+                flight_title: "2. الهروب (Flight)",
+                flight_ancient: "<strong>في الطبيعة قديماً:</strong> الابتعاد والركض بأقصى سرعة بعيداً عن مصدر التهديد.",
+                in_modern_chat_2: "كيف يظهر في المحادثات اليومية؟ [00:02:25]",
+                flight_b1: "ميل الجسد للخلف والابتعاد قليلاً عن المتحدث.",
+                flight_b2: "اتجاه القدمين نحو باب الخروج أثناء الحديث.",
+                flight_b3: "تجنب النظر في العين أو فرك العينين لحجب الرؤية.",
+                fight_title: "3. القتال (Fight)",
+                fight_ancient: "<strong>في الطبيعة قديماً:</strong> المواجهة الهجومية المباشرة عند استحالة التجمد أو الهروب.",
+                in_modern_chat_3: "كيف يظهر في المحادثات اليومية؟ [00:02:32]",
+                fight_b1: "تحريك القدم أو النقر بها بعصبية شديدة.",
+                fight_b2: "شد الكتفين والفك واتخاذ وضعية جسدية متصلبة.",
+                fight_b3: "الاندفاع للأمام أو التحديق الحاد لتخويف الطرف الآخر.",
+                analyzer_tag: "أداة التحقيق التفاعلية • [00:03:50 - 00:06:12]",
+                analyzer_title: "محلل الإشارات ومقياس التوتر التفاعلي (FBI Signal Cluster Lab)",
+                analyzer_subtitle: 'القاعدة الأهم في الفيديو: <strong>"لا توجد حركة واحدة تثبت الكذب!"</strong> حدد الإشارات التي تلاحظها مع السياق المحيط لترى كيف يحللها خبراء السلوك.',
+                preset_label: "تجربة سريعة لمشاهد الفيديو:",
+                preset_1: "🎬 مشهد الطاولة الافتتاحي [00:00:00]",
+                preset_2: "❄️ فخ الغرفة الباردة [00:05:47]",
+                preset_3: "😊 شخص صادق ومرتاح [00:04:40]",
+                preset_reset: "إعادة ضبط",
+                chk_shift_t: "تغير مفاجئ في السلوك بعد السؤال",
+                chk_shift_d: "[00:04:14] كان هادئاً ثم تغيرت حركته فجأة",
+                chk_neck_t: "لمس الرقبة أو الياقة لا إرادياً",
+                chk_neck_d: "[00:04:53] محاولة الجسد لتهدئة التوتر",
+                chk_feet_move_t: "حركة سريعة أو عصبية للقدمين",
+                chk_feet_move_d: "[00:00:13] تفريغ شحنة القلق تحت الطاولة",
+                chk_feet_door_t: "القدمان تتجهان نحو باب الخروج",
+                chk_feet_door_d: "[00:03:18] رغبة حقيقية في الهروب وإنهاء الحوار",
+                chk_hands_t: "إخفاء اليدين أو حك الوجه",
+                chk_hands_d: "[00:03:58] إشارات تحفظ وانزعاج",
+                chk_eyes_t: "تجنب النظر في العين فجأة",
+                chk_eyes_d: "[00:03:58] هروب بصري مؤقت",
+                chk_arms_t: "طي الذراعين (تكتيف اليدين)",
+                chk_arms_d: "[00:05:47] قد يكون تحفظاً أو بسبب البرد!",
+                chk_cold_t: "❄️ عامل السياق: الغرفة باردة (تكييف)",
+                chk_cold_d: "[00:05:55] يلغي تفسير طي الذراعين كتحفظ!",
+                chk_relaxed_t: "✨ أكتاف مسترخية ووضعية جسد مفتوحة",
+                chk_relaxed_d: "[00:04:40] مؤشر قوي على الشعور بالأمان والراحة الحقيقية",
+                diag_header: "تقرير التشخيص السلوكي",
+                diag_subheader: "مقياس التوتر والصدق",
+                meter_comfort: "راحة واطمئنان",
+                meter_stress: "توتر / إخفاء حقيقة",
+                rules_reminder_title: "قواعد جو نافارو الذهبية الثلاث:",
+                rule_1_txt: "1. ابحث عن مجموعة إشارات (Clusters) وليس حركة منفردة.",
+                rule_2_txt: "2. راقب التغير المفاجئ في السلوك بعد طرح السؤال مباشرة.",
+                rule_3_txt: "3. ضع السياق والبيئة المحيطة أولاً قبل إصدار أي حكم.",
+                quiz_tag: "اختبار عملي تفاعلي • 5 قضايا من الفيديو",
+                quiz_title: "اختبر عينك كمحقق فيدرالي (FBI Body Language Quiz)",
+                quiz_score_label: "النتيجة الحالية",
+                quiz_retry_btn: "إعادة الاختبار مرة أخرى",
+                timeline_tag: "الفهرس الزمني الكامل للفيديو • 10 محطات رئيسية",
+                timeline_title: "ملخص فصول الفيديو خطوة بخطوة (مع الروابط الزمنية)",
+                timeline_subtitle: "اضغط على أي توقيت زمني للانتقال مباشرة إلى تلك اللحظة في الفيديو الأصلي على يوتيوب.",
+                footer_source: 'المحتوى العلمي مستند إلى كتاب "What Every BODY is Saying" للعميل الفيدرالي جو نافارو',
+                footer_yt_link: "قناة Abouawd Studio على يوتيوب"
+            },
+            en: {
+                nav_badge: "FBI BEHAVIORAL LAB",
+                nav_title: "Lie Detection via Body Language",
+                nav_scene: "Opening Scene",
+                nav_scanner: "Body Honesty Scanner",
+                nav_limbic: "Limbic Brain",
+                nav_analyzer: "Signal Analyzer",
+                nav_quiz: "FBI Profiler Quiz",
+                nav_timeline: "Video Timeline",
+                watch_video_short: "Watch Video",
+                hero_tag: "FBI Agent Joe Navarro's Methodology",
+                hero_title: 'How to Detect Lies & Read the <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-400 to-cyan-400">Silent Truth</span> Through Body Language',
+                hero_desc: 'Words are easily faked, and a smile can be a perfect mask... but the body is directly wired to the <strong>Limbic Brain</strong>, which exposes stress and anxiety automatically without permission. Explore the complete interactive FBI guide to reading people.',
+                stat_feet: "Feet Honesty Index",
+                stat_instincts: "Automatic Limbic Instincts",
+                stat_single: "Proof of Lie from 1 Gesture",
+                btn_start_scanner: "Launch Body Honesty Scanner",
+                btn_watch_yt: "Watch Original Video on YouTube",
+                scene_badge: "OPENING SCENE SIMULATION [00:00:00]",
+                scene_tab_words: "What the Ear Hears",
+                scene_tab_body: "What the Eye Sees",
+                scene_tab_xray: "Full X-Ray View",
+                scene_mouth_label: "Face & Words (Above the Table):",
+                scene_mouth_quote: '"I am very comfortable.. everything is fine!" (With a confident smile)',
+                scene_fake_tag: "Easily Faked",
+                cue_1_title: "Unconscious Neck Touch",
+                cue_1_desc: "Pacifying sudden internal stress",
+                cue_2_title: "Hands Hidden Under Table",
+                cue_2_desc: "Discomfort & holding back",
+                cue_3_title: "Rapid Foot Movement",
+                cue_3_desc: "Body leaks true anxiety",
+                scene_bottom_quote: '💡 Joe Navarro Insight [00:00:25]: "You heard the words... but if you understood body language, you would know this person is lying or under severe stress!"',
+                scanner_tag: "BIOMETRIC HONESTY MAP • [00:01:34 - 00:05:35]",
+                scanner_title: "Interactive Body Honesty Scanner (Least Honest to Most Honest!)",
+                scanner_subtitle: "Click any hotspot on the silhouette or the buttons to inspect its honesty index and behavioral secrets according to Joe Navarro.",
+                scanner_legend_low: "The Face (Easiest to Fake 25%)",
+                scanner_legend_high: "The Feet (Most Honest 95%)",
+                part_brain_short: "Limbic Brain",
+                part_face_short: "Face & Smile",
+                part_neck_short: "The Neck Zone",
+                part_shoulders_short: "Shoulders & Arms",
+                part_hands_short: "The Hands",
+                part_feet_short: "The Feet (95%!)",
+                honesty_index_label: "Automatic Honesty Index:",
+                scanner_example_header: "Real Video Example:",
+                limbic_badge: "THE LIMBIC BRAIN LAB • [00:01:58]",
+                limbic_title: "The 3 Survival Responses: Freeze, Flight, Fight",
+                limbic_subtitle: 'The Limbic System governs emotions and survival in the brain, operating <strong>100% automatically without conscious thought</strong>. Anciently it protected humans from predators via 3 instincts—today, those exact 3 responses leak out during everyday conversations!',
+                freeze_title: "1. Freeze Response",
+                freeze_ancient: "<strong>In Ancient Nature:</strong> Complete stillness when spotting a predator so movement isn't noticed.",
+                in_modern_chat: "How it manifests in conversations [00:02:18]:",
+                freeze_b1: "Suddenly freezing movement when asked an uncomfortable question.",
+                freeze_b2: "Holding breath or very shallow breathing.",
+                freeze_b3: "Hiding hands under the table or locking ankles tightly.",
+                flight_title: "2. Flight Response",
+                flight_ancient: "<strong>In Ancient Nature:</strong> Retreating and running away as fast as possible from danger.",
+                in_modern_chat_2: "How it manifests in conversations [00:02:25]:",
+                flight_b1: "Leaning the torso backward away from the speaker.",
+                flight_b2: "Pointing one or both feet toward the exit door.",
+                flight_b3: "Breaking eye contact or rubbing eyes to block vision.",
+                fight_title: "3. Fight Response",
+                fight_ancient: "<strong>In Ancient Nature:</strong> Direct aggressive confrontation when freeze or flight fail.",
+                in_modern_chat_3: "How it manifests in conversations [00:02:32]:",
+                fight_b1: "Rapid, nervous foot tapping or kicking motion.",
+                fight_b2: "Tense jaw, raised shoulders, and rigid posture.",
+                fight_b3: "Leaning in aggressively or staring to intimidate.",
+                analyzer_tag: "INTERACTIVE INVESTIGATION TOOL • [00:03:50 - 00:06:12]",
+                analyzer_title: "FBI Signal Cluster & Stress Analyzer",
+                analyzer_subtitle: 'The #1 Rule in the video: <strong>"No single gesture proves lying!"</strong> Toggle observed cues along with environmental context to see how FBI profilers diagnose the situation.',
+                preset_label: "Quick Video Presets:",
+                preset_1: "🎬 Opening Table Scene [00:00:00]",
+                preset_2: "❄️ Cold Room Trap [00:05:47]",
+                preset_3: "😊 Comfortable Honest Person [00:04:40]",
+                preset_reset: "Reset All",
+                chk_shift_t: "Sudden Behavior Shift After Question",
+                chk_shift_d: "[00:04:14] Calm baseline suddenly changes right after a question",
+                chk_neck_t: "Unconscious Neck or Collar Touching",
+                chk_neck_d: "[00:04:53] High-priority pacifying behavior to calm stress",
+                chk_feet_move_t: "Rapid or Nervous Foot Movement",
+                chk_feet_move_d: "[00:00:13] Discharging anxiety beneath the table",
+                chk_feet_door_t: "Feet Pointing Toward the Exit Door",
+                chk_feet_door_d: "[00:03:18] Subconscious desire to leave the conversation",
+                chk_hands_t: "Hiding Hands or Scratching Face",
+                chk_hands_d: "[00:03:58] Indicators of discomfort and restraint",
+                chk_eyes_t: "Sudden Avoidance of Eye Contact",
+                chk_eyes_d: "[00:03:58] Visual flight / blocking mechanism",
+                chk_arms_t: "Crossed Arms Across Chest",
+                chk_arms_d: "[00:05:47] Could be defensiveness OR just feeling cold!",
+                chk_cold_t: "❄️ Context Factor: Cold Room / AC On",
+                chk_cold_d: "[00:05:55] Neutralizes crossed arms as a defensive sign!",
+                chk_relaxed_t: "✨ Relaxed Shoulders & Open Posture",
+                chk_relaxed_d: "[00:04:40] Strong indicator of genuine comfort and safety",
+                diag_header: "BEHAVIORAL DIAGNOSTIC REPORT",
+                diag_subheader: "Stress & Deception Risk Meter",
+                meter_comfort: "Genuine Comfort",
+                meter_stress: "High Stress / Deception Risk",
+                rules_reminder_title: "Joe Navarro's 3 Golden Rules:",
+                rule_1_txt: "1. Look for Clusters of signals, never a single isolated gesture.",
+                rule_2_txt: "2. Watch for sudden Baseline Shifts right after a specific question.",
+                rule_3_txt: "3. Always evaluate Context and environment before judging.",
+                quiz_tag: "INTERACTIVE PROFILER EXAM • 5 VIDEO CASES",
+                quiz_title: "Test Your Eye as an FBI Investigator",
+                quiz_score_label: "Current Score",
+                quiz_retry_btn: "Retake FBI Profiler Quiz",
+                timeline_tag: "COMPLETE VIDEO TIMELINE • 10 KEY CHAPTERS",
+                timeline_title: "Step-by-Step Video Breakdown (With Direct Timestamps)",
+                timeline_subtitle: "Click any timestamp card to jump directly to that exact moment in the original YouTube video.",
+                footer_source: 'Scientific content based on "What Every BODY is Saying" by former FBI Agent Joe Navarro',
+                footer_yt_link: "Abouawd Studio YouTube Channel"
+            }
+        };
+
+        // 2. Body Scanner Data (Arabic & English)
+        const bodyPartsData = {
+            brain: {
+                code: "ZONE: LIMBIC BRAIN [100% AUTO]",
+                timestamp: "[00:01:34]",
+                percent: 100,
+                color: "bg-purple-500",
+                badgeClass: "bg-purple-500/20 text-purple-600 dark:text-purple-400",
+                ar: {
+                    badge: "100% تلقائي (بدون تفكير)",
+                    title: "الدماغ والجهاز الحوفي (The Limbic Brain)",
+                    desc: "يفسر جو نافارو أن لغة الجسد مرتبطة مباشرة بجزء في الدماغ يسمى 'الجهاز الحوفي'، وهو المركز المسؤول عن المشاعر والبقاء. بينما يستطيع الإنسان استخدام عقله الواعي لاختراع كذبة بالكلمات، فإن الجهاز الحوفي يرسل إشارات فورية للجسد بدون استئذان!",
+                    example: "[00:01:45] بمجرد الشعور بالتهديد أو الخوف من انكشاف كذبة، يطلق الجهاز الحوفي استجابة (التجمد أو الهروب أو القتال) في أجزاء من الثانية قبل أن ينطق اللسان."
+                },
+                en: {
+                    badge: "100% Automatic Reaction",
+                    title: "The Limbic Brain (Emotional Core)",
+                    desc: "Joe Navarro explains that body language is directly wired to the 'Limbic System', the brain center governing emotions and survival. While the conscious mind can invent verbal lies, the limbic brain fires instant physical signals without permission!",
+                    example: "[00:01:45] The moment a person feels threatened or afraid of being caught in a lie, the limbic brain triggers Freeze, Flight, or Fight within milliseconds."
+                }
+            },
+            face: {
+                code: "ZONE: THE FACE [25% HONESTY]",
+                timestamp: "[00:05:22]",
+                percent: 25,
+                color: "bg-red-500",
+                badgeClass: "bg-red-500/20 text-red-600 dark:text-red-400",
+                ar: {
+                    badge: "25% فقط (الأسهل تزييفاً!)",
+                    title: "الوجه والابتسامة: القناع الأكثر خداعاً",
+                    desc: "يؤكد الفيديو أن الوجه هو أقل جزء يمكن الاعتماد عليه وحده لكشف الكذب! لأن البشر يتدربون منذ الطفولة على التحكم في ملامح وجوههم ومجاملة الآخرين، فيمكن للشخص أن يبتسم بثقة بينما يغلي من الداخل غضباً أو قلقاً.",
+                    example: "[00:05:28] الشخص الجالس على الطاولة كان يبتسم ابتسامة هادئة ومقنعة جداً، لكن جسده تحت الطاولة كان يصرخ بالتوتر."
+                },
+                en: {
+                    badge: "25% Honesty (Easiest to Fake!)",
+                    title: "The Face & Smile: The Most Deceptive Mask",
+                    desc: "The video highlights that the face is the LEAST reliable place to look for truth on its own! Humans are trained since childhood to mask facial expressions and fake polite smiles even when angry or terrified inside.",
+                    example: "[00:05:28] In the opening scene, the subject maintained a calm, confident smile while his lower body betrayed severe anxiety."
+                }
+            },
+            neck: {
+                code: "ZONE: THE NECK [85% HONESTY]",
+                timestamp: "[00:04:53]",
+                percent: 85,
+                color: "bg-amber-500",
+                badgeClass: "bg-amber-500/20 text-amber-600 dark:text-amber-400",
+                ar: {
+                    badge: "85% (منطقة تهدئة التوتر)",
+                    title: "الرقبة: جرس الإنذار الصامت للتوتر",
+                    desc: "عندما يشعر الإنسان بتوتر مفاجئ أو تهديد بسبب سؤال محرج، يقوم الجسد بحركات تهدئة ذاتية (Pacifying Behaviors) لا إرادية، وأشهرها لمس الرقبة أو تدليكها أو شد ياقة القميص لتهدئة ضربات القلب.",
+                    example: "[00:04:53] إذا سألت شخصاً عن موضوع حساس ولاحظت أن يده اتجهت فوراً للمس رقبته، فاعلم أن السؤال أصاب وتراً حساساً لديه."
+                },
+                en: {
+                    badge: "85% (High Pacifying Zone)",
+                    title: "The Neck: Silent Alarm of Sudden Stress",
+                    desc: "When someone experiences sudden stress from a probing question, the body performs unconscious 'Pacifying Behaviors' to calm down—most notably touching, stroking, or covering the neck or collar.",
+                    example: "[00:04:53] If you ask a sensitive question and the person's hand immediately rises to touch their neck, that topic caused an instant spike in internal stress."
+                }
+            },
+            shoulders: {
+                code: "ZONE: SHOULDERS & ARMS [75%]",
+                timestamp: "[00:04:40]",
+                percent: 75,
+                color: "bg-cyan-500",
+                badgeClass: "bg-cyan-500/20 text-cyan-600 dark:text-cyan-400",
+                ar: {
+                    badge: "75% (مؤشر الراحة أو الدفاع)",
+                    title: "الكتفان والذراعان: مقياس الراحة والتحفظ",
+                    desc: "الشخص المرتاح والصادق تكون أكتافه مسترخية وحركاته مفتوحة وطبيعية. أما ارتفاع الكتفين نحو الأذنين أو طي الذراعين فيدل غالباً على التحفظ والدفاعية، بشرط التأكد من السياق (مثل برودة الجو!).",
+                    example: "[00:05:47] شخص يطوي ذراعيه: قد تظن أنه متحفظ أو يخفي شيئاً، لكن إذا كانت الغرفة باردة فالأمر طبيعي تماماً ولا علاقة له بالكذب!"
+                },
+                en: {
+                    badge: "75% (Comfort vs Defense)",
+                    title: "Shoulders & Arms: Openness vs. Barrier",
+                    desc: "A comfortable, truthful person displays relaxed shoulders and open movements. Tense, raised shoulders or crossed arms often signal defensiveness—provided you first rule out environmental context like a cold room!",
+                    example: "[00:05:47] Someone crosses their arms: you might assume defensiveness, but if the room AC is freezing, they are simply warming up!"
+                }
+            },
+            hands: {
+                code: "ZONE: THE HANDS [80% HONESTY]",
+                timestamp: "[00:00:13]",
+                percent: 80,
+                color: "bg-blue-500",
+                badgeClass: "bg-blue-500/20 text-blue-600 dark:text-blue-400",
+                ar: {
+                    badge: "80% (تكشف الإخفاء والقلق)",
+                    title: "اليدان: إخفاء الحقيقة وحركات التهدئة",
+                    desc: "عندما نشعر بالراحة تتحدث أيدينا بوضوح فوق الطاولة. أما عند الكذب أو التوتر الشديد، يميل الشخص لإخفاء يديه تحت الطاولة (استجابة التجمد) أو استخدامهما لحك الوجه والأنف والرقبة بشكل متكرر.",
+                    example: "[00:00:13] في المشهد الافتتاحي، أخفى المتحدث إحدى يديه تحت الطاولة بينما كانت يده الأخرى تلمس رقبته لا إرادياً."
+                },
+                en: {
+                    badge: "80% (Reveals Restraint)",
+                    title: "The Hands: Hiding & Nervous Fidgeting",
+                    desc: "When comfortable, our hands gesture openly above the table. Under stress or deception, people tend to hide their hands beneath the table or use them to unconsciously scratch their face and neck.",
+                    example: "[00:00:13] In the opening scene, the speaker hid his hands under the table while claiming he was completely comfortable."
+                }
+            },
+            feet: {
+                code: "ZONE: THE FEET [95% HONESTY!]",
+                timestamp: "[00:02:46]",
+                percent: 95,
+                color: "bg-emerald-500",
+                badgeClass: "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400",
+                ar: {
+                    badge: "95% (الأصدق في الجسد!)",
+                    title: "القدمان: أصدق جزء في جسد الإنسان!",
+                    desc: "مفاجأة كتاب جو نافارو! الناس بارعون جداً في تمثيل تعابير الوجه، لكن لا أحد تقريباً ينتبه لقدميه أثناء الحديث. لذلك تظل القدمان أكثر جزء صادق يفضح الرغبة الحقيقية في البقاء أو الهروب أو التوتر.",
+                    example: "[00:03:18] إذا كنت تتحدث مع شخص وهو يبتسم ويهز رأسه موافقاً، لكن قدميه تتجهان نحو الباب.. فالحقيقة هي أنه يريد إنهاء الحوار والمغادرة فوراً حتى لو قال العكس!"
+                },
+                en: {
+                    badge: "95% (Most Honest Body Part!)",
+                    title: "The Feet: The Most Honest Part of the Body!",
+                    desc: "Joe Navarro's biggest revelation! People focus all their effort on faking facial expressions, forgetting their feet entirely. Thus, the feet remain the most honest indicator of true intentions and stress.",
+                    example: "[00:03:18] If someone is smiling and nodding in agreement with you, but their feet are pointed toward the exit door—they subconsciously want to leave immediately!"
+                }
+            }
+        };
+
+        // 3. Quiz Questions Data (5 Cases from Video)
+        const quizData = [
+            {
+                timestamp: "[00:00:00 - 00:00:35]",
+                ar: {
+                    question: "القضية 1: شخص يجلس أمامك يبتسم بثقة ويقول «أنا مرتاح جداً»، لكن يديه مخفيتان تحت الطاولة، ويلمس رقبته لا إرادياً، وقدماه تتحركان بسرعة. ما هو التشخيص الأدق حسب جو نافارو؟",
+                    options: [
+                        "الشخص صادق ومرتاح فعلاً لأن الابتسامة والكلمات واضحة.",
+                        "هناك تناقض صارخ بين الكلمات والجسد؛ الجسد يفضح توتراً شديداً أو إخفاءً للحقيقة.",
+                        "حركة القدمين ولمس الرقبة مجرد عادات عشوائية لا معنى لها أبداً."
+                    ],
+                    correct: 1,
+                    explanation: "صحيح! الكلمات والابتسامة يسهل تزييفها، لكن اجتماع إخفاء اليدين + لمس الرقبة + حركة القدمين السريعة تحت الطاولة يمثل مجموعة إشارات (Cluster) تفضح التوتر أو الكذب."
+                },
+                en: {
+                    question: "Case 1: Someone sits across from you smiling confidently and saying 'I am very comfortable', yet their hands are hidden under the table, they unconsciously touch their neck, and their feet tap rapidly. What is Joe Navarro's diagnosis?",
+                    options: [
+                        "They are genuinely comfortable because their smile and words are clear.",
+                        "There is a stark contradiction between words and body; the body leaks severe stress or deception.",
+                        "Foot movement and neck touching are completely meaningless random habits."
+                    ],
+                    correct: 1,
+                    explanation: "Spot on! Words and smiles are easy to fake, whereas hidden hands + neck touching + rapid feet form a classic stress 'Cluster' contradicting their verbal claim."
+                }
+            },
+            {
+                timestamp: "[00:02:46 - 00:03:45]",
+                ar: {
+                    question: "القضية 2: ما هو «أصدق جزء في جسد الإنسان» الذي ينساه الناس أثناء التمثيل، وماذا يعني اتجاهه نحو الباب أثناء ابتسام الشخص لك؟",
+                    options: [
+                        "العينان؛ واتجاههما للباب يعني التفكير العميق.",
+                        "القدمان؛ واتجاههما نحو الباب يكشف رغبة الشخص الحقيقية في إنهاء الحوار والمغادرة.",
+                        "الكفان؛ ووضعهما في الجيب يعني الصدق التام."
+                    ],
+                    correct: 1,
+                    explanation: "ممتاز! القدمان هما أصدق جزء في الجسد (95%) لأن الناس يركزون على تزييف ملامح الوجه وينسون أقدامهم. اتجاه القدمين للباب يعني رغبة الجهاز الحوفي في المغادرة (Flight)."
+                },
+                en: {
+                    question: "Case 2: Which body part does Joe Navarro identify as the 'MOST HONEST', and what does it mean when it points toward the door while the person smiles at you?",
+                    options: [
+                        "The Eyes; looking toward the door indicates deep memory recall.",
+                        "The Feet; pointing toward the exit reveals a true subconscious desire to end the chat and leave.",
+                        "The Palms; keeping them still proves 100% honesty."
+                    ],
+                    correct: 1,
+                    explanation: "Correct! The feet are the most honest part of the body because people focus on faking facial expressions and forget their feet. Pointing them at the exit signals a Flight desire to leave."
+                }
+            },
+            {
+                timestamp: "[00:04:14 - 00:04:38]",
+                ar: {
+                    question: "القضية 3: كنت تتحدث مع شخص وكان هادئاً تماماً، وبمجرد أن سألته سؤالاً معيناً لمس رقبته وغيّر وضعية قدميه وتجنب النظر إليك. ماذا يثبت هذا التغير المفاجئ؟",
+                    options: [
+                        "يثبت بنسبة 100% أنه كذاب محترف ويجب اتهامه فوراً.",
+                        "لا يثبت الكذب وحده حتمياً، لكنه يكشف أن هذا السؤال تحديداً سبب له توتراً شديداً ويستحق التعمق فيه.",
+                        "يدل على أنه شعر بالملل فقط من طول المحادثة."
+                    ],
+                    correct: 1,
+                    explanation: "دقيق جداً! في الدقيقة [00:04:30] يؤكد الفيديو أن التغير المفاجئ بعد السؤال لا يعني بالضرورة أنه يكذب، لكنه يثبت أن السؤال سبب له توتراً أو قلقاً (نقطة ساخنة)."
+                },
+                en: {
+                    question: "Case 3: A person is completely calm during a chat, but the exact moment you ask a specific question, they touch their neck, shift their feet, and break eye contact. What does this sudden baseline shift prove?",
+                    options: [
+                        "It proves 100% that they are lying and should be accused immediately.",
+                        "It doesn't automatically prove a lie on its own, but proves the question triggered sudden stress requiring further probing.",
+                        "It merely shows they are getting sleepy."
+                    ],
+                    correct: 1,
+                    explanation: "Exactly right! At [00:04:30], the video stresses that a sudden baseline shift doesn't automatically equal a lie, but pinpoints acute stress triggered by that exact question."
+                }
+            },
+            {
+                timestamp: "[00:05:47 - 00:06:12]",
+                ar: {
+                    question: "القضية 4: رأيت شخصاً يطوي ذراعيه (يكتف يديه) أثناء حديثك معه في قاعة اجتماعات مكيفة وباردة. كيف تطبق «قاعدة السياق» هنا؟",
+                    options: [
+                        "أحكم عليه فوراً بأنه شخص دفاعي يرفض كلامي ويخفي الحقيقة.",
+                        "أراعي السياق البيئي أولاً؛ فبرودة الغرفة تفسر طي الذراعين طلباً للدفء وليس بسبب التوتر أو الكذب.",
+                        "أطلب منه الوقوف لمراقبة حركة قدميه فقط."
+                    ],
+                    correct: 1,
+                    explanation: "أحسنت! السياق (Context) هو الفلتر الأهم في منهجية جو نافارو [00:05:47]: طي الذراعين في غرفة باردة سلوك طبيعي للدفء وليس إشارة دفاعية."
+                },
+                en: {
+                    question: "Case 4: You notice someone crossing their arms while listening to you inside a chilly, air-conditioned meeting room. How do you apply Joe Navarro's 'Context Rule'?",
+                    options: [
+                        "Conclude immediately that they are defensive, closed-off, and hiding the truth.",
+                        "Factor in environmental context first: the cold room explains crossed arms for warmth rather than deception.",
+                        "Ignore the environment because body language never changes with temperature."
+                    ],
+                    correct: 1,
+                    explanation: "Great job! Context [00:05:47] is paramount: crossing arms in a cold room is simply physical warming, not psychological defensiveness."
+                }
+            },
+            {
+                timestamp: "[00:01:58 - 00:02:40]",
+                ar: {
+                    question: "القضية 5: عندما يتعرض الشخص لسؤال مفاجئ ومربك فيتوقف فجأة عن الحركة تماماً ويحبس أنفاسه، فهذه الاستجابة التلقائية من الجهاز الحوفي تسمى:",
+                    options: [
+                        "استجابة التجمد (Freeze Response)",
+                        "استجابة القتال الهجومي (Fight Response)",
+                        "الاسترخاء الواعي (Conscious Relaxation)"
+                    ],
+                    correct: 0,
+                    explanation: "إجابة صحيحة! التوقف المفاجئ عن الحركة عند سماع سؤال غير مريح هو تجسيد عصري لاستجابة التجمد (Freeze) التي يديرها الجهاز الحوفي تلقائياً."
+                },
+                en: {
+                    question: "Case 5: When a person is hit with an unexpected, uncomfortable question and suddenly stops moving completely while holding their breath, which Limbic survival instinct is active?",
+                    options: [
+                        "The Freeze Response",
+                        "The Fight Response",
+                        "Conscious Relaxation"
+                    ],
+                    correct: 0,
+                    explanation: "Correct! Sudden stillness upon hearing an uncomfortable question is the modern conversational manifestation of the ancient Limbic Freeze response."
+                }
+            }
+        ];
+
+        // 4. Video Timeline Chapters Data ([00:00:00] to [00:06:36])
+        const timelineData = [
+            {
+                time: "00:00:00",
+                sec: 0,
+                icon: "fa-masks-theater",
+                color: "text-amber-500",
+                ar: { title: "مشهد الطاولة: الكلمات ضد الجسد", desc: "شخص يبتسم ويقول «أنا مرتاح جداً» بينما يداه مخفيتان تحت الطاولة وقدماه تتحركان بسرعة ويده تلمس رقبته." },
+                en: { title: "The Table Scene: Words vs. Body", desc: "A smiling person says 'I'm very comfortable' while hiding hands under the table, tapping feet rapidly, and touching their neck." }
+            },
+            {
+                time: "00:00:37",
+                sec: 37,
+                icon: "fa-user-secret",
+                color: "text-cyan-500",
+                ar: { title: "من هو جو نافارو؟ (Joe Navarro)", desc: "عميل سابق في مكتب التحقيقات الفيدرالي FBI قضى عقوداً في استجواب المشتبه بهم ومراقبة الإشارات غير اللفظية." },
+                en: { title: "Who is Joe Navarro?", desc: "Former FBI counterintelligence agent who spent decades interviewing suspects and mastering non-verbal communication." }
+            },
+            {
+                time: "00:01:34",
+                sec: 94,
+                icon: "fa-brain",
+                color: "text-purple-500",
+                ar: { title: "سر الجهاز الحوفي (Limbic Brain)", desc: "لماذا لا يكذب الجسد؟ لأن الجهاز الحوفي المسؤول عن المشاعر والبقاء يعمل تلقائياً وبسرعة فائقة بدون استئذان الوعي." },
+                en: { title: "Secret of the Limbic Brain", desc: "Why doesn't the body lie? Because the Limbic System governs survival and emotions 100% automatically without conscious filters." }
+            },
+            {
+                time: "00:01:58",
+                sec: 118,
+                icon: "fa-shield-virus",
+                color: "text-rose-500",
+                ar: { title: "استجابات البقاء الثلاث: التجمد، الهروب، القتال", desc: "كيف تتحول غرائز البقاء القديمة أمام المفترسات إلى حركات دقيقة داخل المحادثات والاجتماعات اليومية." },
+                en: { title: "Freeze, Flight & Fight in Chat", desc: "How ancient predator survival mechanisms manifest as subtle physical shifts during modern conversations." }
+            },
+            {
+                time: "00:02:46",
+                sec: 166,
+                icon: "fa-shoe-prints",
+                color: "text-emerald-500",
+                ar: { title: "المفاجأة: القدمان أصدق جزء في الجسد!", desc: "الناس يركزون على تزييف الوجه وينسون أقدامهم تماماً، مما يجعل القدمين المرآة الأصدق للرغبة الحقيقية (95%)." },
+                en: { title: "The Feet: Most Honest Body Part!", desc: "People focus on faking facial expressions and forget their feet, making feet the #1 truth indicator (95%)." }
+            },
+            {
+                time: "00:03:18",
+                sec: 198,
+                icon: "fa-door-open",
+                color: "text-amber-500",
+                ar: { title: "خدعة الابتسامة والقدم المتجهة للباب", desc: "شخص يبتسم ويهز رأسه موافقاً لحديثك، لكن قدميه تشيران نحو المخرج رغبةً في الهروب وإنهاء اللقاء." },
+                en: { title: "Polite Smile vs. Exit-Pointing Feet", desc: "Someone smiles and nods politely at you, while their feet point straight at the exit door wanting to leave." }
+            },
+            {
+                time: "00:03:50",
+                sec: 230,
+                icon: "fa-layer-group",
+                color: "text-cyan-500",
+                ar: { title: "قاعدة مجموعات الإشارات (Signal Clusters)", desc: "لا توجد حركة منفردة تثبت الكذب! المحقق الذكي يبحث عن اجتماع عدة إشارات توتر معاً في نفس اللحظة." },
+                en: { title: "Rule of Signal Clusters", desc: "No single gesture proves lying! Expert profilers look for multiple stress signals occurring together." }
+            },
+            {
+                time: "00:04:14",
+                sec: 254,
+                icon: "fa-bolt",
+                color: "text-yellow-500",
+                ar: { title: "التغير المفاجئ في السلوك ولمس الرقبة", desc: "مراقبة التغير اللحظي بعد طرح سؤال حساس، وأهمية حركات التهدئة الذاتية مثل لمس الرقبة [00:04:53]." },
+                en: { title: "Sudden Baseline Shifts & Neck Touch", desc: "Spotting sudden behavioral changes right after a question, plus high-priority pacifying neck touches [00:04:53]." }
+            },
+            {
+                time: "00:05:22",
+                sec: 322,
+                icon: "fa-face-meh",
+                color: "text-red-500",
+                ar: { title: "لماذا الوجه هو الأسهل تزييفاً؟ والسياق أولاً", desc: "البشر مدربون منذ الصغر على التحكم في الوجه [00:05:22]، وأهمية مراعاة السياق مثل برودة الغرفة [00:05:47]." },
+                en: { title: "Why the Face Lies & Context Rule", desc: "Why humans easily mask facial expressions [00:05:22], and why environmental context (like a cold room) comes first [00:05:47]." }
+            },
+            {
+                time: "00:06:36",
+                sec: 396,
+                icon: "fa-eye",
+                color: "text-emerald-500",
+                ar: { title: "الخاتمة: الحقيقة تُرى ولا تُسمع فقط", desc: "الهدف من لغة الجسد ليس اتهام الناس، بل فهم مشاعرهم الحقيقية بعمق وذكاء اجتماعي." },
+                en: { title: "Conclusion: Truth is Seen, Not Just Heard", desc: "The goal of reading body language isn't accusing people, but understanding human emotions deeply." }
+            }
+        ];
+
+        // ================= INITIALIZATION & FUNCTIONS =================
+
+        // Toggle Dark / Light Mode
+        function toggleTheme() {
+            const htmlEl = document.documentElement;
+            const iconEl = document.getElementById('theme-icon');
+            if (htmlEl.classList.contains('dark')) {
+                htmlEl.classList.remove('dark');
+                iconEl.className = 'fa-solid fa-moon text-lg text-slate-700';
+            } else {
+                htmlEl.classList.add('dark');
+                iconEl.className = 'fa-solid fa-sun text-lg text-amber-400';
+            }
+        }
+
+        // Toggle Arabic / English Language
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            const htmlEl = document.documentElement;
+            htmlEl.lang = currentLang;
+            htmlEl.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+            // Update language toggle button label
+            document.getElementById('lang-btn-text').textContent = currentLang === 'ar' ? 'English' : 'العربية';
+
+            // Translate all static data-i18n elements
+            const dict = i18n[currentLang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    el.innerHTML = dict[key];
+                }
+            });
+
+            document.getElementById('nav-badge').textContent = dict.nav_badge;
+            document.getElementById('nav-title').textContent = dict.nav_title;
+
+            // Refresh all interactive components in the selected language
+            setSceneMode(currentSceneMode);
+            selectBodyPart(currentBodyPart);
+            calculateSignals();
+            renderQuizQuestion();
+            renderTimeline();
+        }
+
+        // 1. Opening Scene Mode Switcher (Words vs Body vs X-Ray)
+        function setSceneMode(mode) {
+            currentSceneMode = mode;
+            const wordsLayer = document.getElementById('scene-layer-words');
+            const bodyLayer = document.getElementById('scene-layer-body');
+            const underTableSvg = document.getElementById('svg-under-table');
+            const neckCueSvg = document.getElementById('svg-neck-cue');
+            const statusPill = document.getElementById('scene-status-pill');
+
+            const btnWords = document.getElementById('scene-btn-words');
+            const btnBody = document.getElementById('scene-btn-body');
+            const btnXray = document.getElementById('scene-btn-xray');
+
+            const inactiveClass = "py-2 px-2 rounded-lg text-xs sm:text-sm font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+            const activeClass = "py-2 px-2 rounded-lg text-xs sm:text-sm font-bold transition-all bg-amber-500 text-slate-950 shadow";
+
+            btnWords.className = mode === 'words' ? activeClass : inactiveClass;
+            btnBody.className = mode === 'body' ? activeClass : inactiveClass;
+            btnXray.className = mode === 'xray' ? activeClass : inactiveClass;
+
+            if (mode === 'words') {
+                wordsLayer.style.opacity = '1';
+                bodyLayer.style.opacity = '0.15';
+                underTableSvg.style.opacity = '0.12';
+                neckCueSvg.style.opacity = '0.15';
+                statusPill.textContent = currentLang === 'ar' ? 'ما تسمعه الأذن فقط (الظاهر)' : 'What the Ear Hears (Surface)';
+            } else if (mode === 'body') {
+                wordsLayer.style.opacity = '0.2';
+                bodyLayer.style.opacity = '1';
+                underTableSvg.style.opacity = '1';
+                neckCueSvg.style.opacity = '1';
+                statusPill.textContent = currentLang === 'ar' ? 'ما تراه العين الخبيرة (الحقيقة)' : 'What the Expert Eye Sees (Truth)';
+            } else {
+                wordsLayer.style.opacity = '1';
+                bodyLayer.style.opacity = '1';
+                underTableSvg.style.opacity = '1';
+                neckCueSvg.style.opacity = '1';
+                statusPill.textContent = currentLang === 'ar' ? 'وضع الأشعة السينية الشامل (X-Ray)' : 'Full X-Ray Comparison Mode';
+            }
+        }
+
+        // 2. Interactive Body Scanner Selection
+        function selectBodyPart(partKey) {
+            currentBodyPart = partKey;
+            const data = bodyPartsData[partKey];
+            const langData = data[currentLang];
+
+            document.getElementById('scanner-active-code').textContent = data.code;
+            document.getElementById('detail-timestamp').textContent = data.timestamp;
+            
+            const badgeEl = document.getElementById('detail-honesty-badge');
+            badgeEl.textContent = langData.badge;
+            badgeEl.className = `px-3 py-1 rounded-full text-xs font-black ${data.badgeClass}`;
+
+            document.getElementById('detail-title').textContent = langData.title;
+            document.getElementById('detail-description').textContent = langData.desc;
+            document.getElementById('detail-example').textContent = langData.example;
+
+            const barEl = document.getElementById('detail-progress-bar');
+            barEl.style.width = `${data.percent}%`;
+            barEl.className = `h-full transition-all duration-500 ${data.color}`;
+
+            // Highlight active button
+            const keys = ['brain', 'face', 'neck', 'shoulders', 'hands', 'feet'];
+            keys.forEach(k => {
+                const btn = document.getElementById(`btn-part-${k}`);
+                if (k === partKey) {
+                    btn.className = "p-3.5 rounded-2xl border-2 border-amber-500 bg-amber-500/10 text-slate-900 dark:text-white text-start transition-all flex items-center gap-3 shadow-md";
+                } else {
+                    btn.className = "p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 hover:border-slate-400 text-start transition-all flex items-center gap-3";
+                }
+            });
+        }
+
+        // 3. Interactive FBI Signal Analyzer & Baseline Calculator
+        function applyPreset(presetName) {
+            const ids = ['chk-shift', 'chk-neck', 'chk-feet-move', 'chk-feet-door', 'chk-hands', 'chk-eyes', 'chk-arms', 'chk-cold', 'chk-relaxed'];
+            ids.forEach(id => document.getElementById(id).checked = false);
+
+            if (presetName === 'intro') {
+                document.getElementById('chk-neck').checked = true;
+                document.getElementById('chk-feet-move').checked = true;
+                document.getElementById('chk-hands').checked = true;
+            } else if (presetName === 'cold') {
+                document.getElementById('chk-arms').checked = true;
+                document.getElementById('chk-cold').checked = true;
+            } else if (presetName === 'comfortable') {
+                document.getElementById('chk-relaxed').checked = true;
+            }
+            calculateSignals();
+        }
+
+        function calculateSignals() {
+            const shift = document.getElementById('chk-shift').checked;
+            const neck = document.getElementById('chk-neck').checked;
+            const feetMove = document.getElementById('chk-feet-move').checked;
+            const feetDoor = document.getElementById('chk-feet-door').checked;
+            const hands = document.getElementById('chk-hands').checked;
+            const eyes = document.getElementById('chk-eyes').checked;
+            const arms = document.getElementById('chk-arms').checked;
+            const cold = document.getElementById('chk-cold').checked;
+            const relaxed = document.getElementById('chk-relaxed').checked;
+
+            let stressScore = 10; // Base neutral
+            let cueCount = 0;
+
+            if (shift) { stressScore += 28; cueCount++; }
+            if (neck) { stressScore += 22; cueCount++; }
+            if (feetMove) { stressScore += 20; cueCount++; }
+            if (feetDoor) { stressScore += 15; cueCount++; }
+            if (hands) { stressScore += 15; cueCount++; }
+            if (eyes) { stressScore += 10; cueCount++; }
+            if (arms) {
+                if (!cold) {
+                    stressScore += 12;
+                    cueCount++;
+                }
+            }
+            if (relaxed) {
+                stressScore -= 30;
+            }
+
+            stressScore = Math.max(5, Math.min(98, stressScore));
+
+            // Update UI Meter
+            document.getElementById('stress-meter-bar').style.width = `${stressScore}%`;
+            document.getElementById('stress-score-text').textContent = currentLang === 'ar'
+                ? `${stressScore}% مؤشر التوتر`
+                : `${stressScore}% Stress Index`;
+
+            document.getElementById('cluster-count-badge').textContent = currentLang === 'ar'
+                ? `${cueCount} إشارات توتر`
+                : `${cueCount} Stress Cues`;
+
+            const verdictBox = document.getElementById('verdict-box');
+            const verdictTitle = document.getElementById('verdict-title');
+            const verdictDesc = document.getElementById('verdict-desc');
+
+            // Context Override Check: Crossed Arms in Cold Room
+            if (arms && cold && cueCount === 0) {
+                verdictBox.className = "p-4 rounded-2xl bg-cyan-500/15 border border-cyan-500/40 space-y-2";
+                verdictTitle.className = "font-black text-base text-cyan-300";
+                verdictTitle.textContent = currentLang === 'ar'
+                    ? "❄️ تنبيه قاعدة السياق الذهبية [00:05:47]"
+                    : "❄️ Golden Context Rule Active [00:05:47]";
+                verdictDesc.textContent = currentLang === 'ar'
+                    ? "الشخص يطوي ذراعيه لأن الغرفة باردة! يشدد جو نافارو على عدم تفسير طي الذراعين كدفاعية أو كذب عندما يكون الطقس بارداً."
+                    : "The subject crossed their arms because the room is cold! Joe Navarro emphasizes filtering out environmental factors before assuming defensiveness.";
+                return;
+            }
+
+            if (stressScore >= 65 || cueCount >= 3) {
+                verdictBox.className = "p-4 rounded-2xl bg-rose-500/15 border border-rose-500/40 space-y-2";
+                verdictTitle.className = "font-black text-base text-rose-300";
+                verdictTitle.textContent = currentLang === 'ar'
+                    ? "🚨 مجموعة إشارات توتر عالية (High-Stress Cluster)"
+                    : "🚨 High-Stress Signal Cluster Detected";
+                verdictDesc.textContent = currentLang === 'ar'
+                    ? "اجتماع 3 إشارات أو أكثر معاً (خاصة لمس الرقبة وحركة القدمين وتغير السلوك) يدل على قلق شديد أو محاولة إخفاء شيء. تذكر: هذا لا يثبت الكذب تلقائياً، لكنه يكشف أن الموضوع حساس جداً ويستوجب أسئلة أعمق!"
+                    : "3 or more simultaneous cues (especially neck pacifying, foot movement, and baseline shift) indicate severe discomfort or potential deception. Remember: stress ≠ automatic lie, but tells you exactly where to probe deeper!";
+            } else if (stressScore >= 35 || cueCount === 1 || cueCount === 2) {
+                verdictBox.className = "p-4 rounded-2xl bg-amber-500/15 border border-amber-500/40 space-y-2";
+                verdictTitle.className = "font-black text-base text-amber-300";
+                verdictTitle.textContent = currentLang === 'ar'
+                    ? "⚠️ إشارات فردية تحتاج للمراقبة (Monitor Baseline)"
+                    : "⚠️ Isolated Cues — Keep Observing Baseline";
+                verdictDesc.textContent = currentLang === 'ar'
+                    ? "توجد إشارة أو إشارتان فقط. حسب قاعدة جو نافارو [00:03:50]: لا تحكم من حركة منفردة، بل استمر في الحوار وراقب هل ستظهر إشارات أخرى تؤكد التوتر أم لا."
+                    : "Only 1–2 cues observed. Per Joe Navarro's rule [00:03:50]: never judge from a single gesture. Keep observing to see if a full cluster develops.";
+            } else {
+                verdictBox.className = "p-4 rounded-2xl bg-emerald-500/15 border border-emerald-500/40 space-y-2";
+                verdictTitle.className = "font-black text-base text-emerald-300";
+                verdictTitle.textContent = currentLang === 'ar'
+                    ? "✅ حالة ارتياح وتوافق جسدي (Baseline Comfort)"
+                    : "✅ Genuine Physical Comfort & Congruence";
+                verdictDesc.textContent = currentLang === 'ar'
+                    ? "الأكتاف المسترخية والحركات المفتوحة مع غياب حركات التهدئة الذاتية تدل على أن الشخص يشعر بالأمان والصدق في هذه اللحظة."
+                    : "Relaxed shoulders, open posture, and absence of pacifying behaviors indicate genuine psychological comfort and truthfulness.";
+            }
+        }
+
+        // 4. Interactive Quiz Functions
+        function renderQuizQuestion() {
+            const activeArea = document.getElementById('quiz-active-area');
+            const resultArea = document.getElementById('quiz-result-area');
+
+            if (currentQuizIndex >= quizData.length) {
+                activeArea.classList.add('hidden');
+                resultArea.classList.remove('hidden');
+                
+                document.getElementById('quiz-final-title').textContent = currentLang === 'ar'
+                    ? `أحسنت! نتيجتك النهائية: ${quizScore} من ${quizData.length}`
+                    : `Well Done! Final Score: ${quizScore} / ${quizData.length}`;
+
+                document.getElementById('quiz-final-desc').textContent = currentLang === 'ar'
+                    ? "لقد أتقنت القواعد الأساسية لكتاب جو نافارو: مراقبة القدمين، فهم الجهاز الحوفي، البحث عن مجموعات الإشارات، وعدم إغفال السياق!"
+                    : "You have mastered Joe Navarro's core FBI rules: watching the feet, understanding the limbic brain, spotting signal clusters, and respecting context!";
+                return;
+            }
+
+            activeArea.classList.remove('hidden');
+            resultArea.classList.add('hidden');
+
+            const item = quizData[currentQuizIndex];
+            const langItem = item[currentLang];
+
+            document.getElementById('quiz-step-label').textContent = currentLang === 'ar'
+                ? `القضية ${currentQuizIndex + 1} من ${quizData.length}`
+                : `Case ${currentQuizIndex + 1} of ${quizData.length}`;
+            document.getElementById('quiz-timestamp-badge').textContent = item.timestamp;
+            document.getElementById('quiz-progress-bar').style.width = `${((currentQuizIndex + 1) / quizData.length) * 100}%`;
+            document.getElementById('quiz-question-text').textContent = langItem.question;
+            document.getElementById('quiz-score-display').textContent = `${quizScore} / ${quizData.length}`;
+
+            const optionsGrid = document.getElementById('quiz-options-grid');
+            optionsGrid.innerHTML = '';
+
+            langItem.options.forEach((optText, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 hover:border-amber-500 text-start font-bold text-sm sm:text-base text-slate-800 dark:text-slate-200 transition-all flex items-center justify-between gap-3";
+                btn.innerHTML = `
+                    <span>${optText}</span>
+                    <span class="w-7 h-7 rounded-full border border-slate-400 flex items-center justify-center text-xs font-mono shrink-0">${idx + 1}</span>
+                `;
+                btn.onclick = () => selectQuizAnswer(idx);
+                optionsGrid.appendChild(btn);
+            });
+
+            document.getElementById('quiz-feedback-box').classList.add('hidden');
+            quizAnswered = false;
+        }
+
+        function selectQuizAnswer(selectedIndex) {
+            if (quizAnswered) return;
+            quizAnswered = true;
+
+            const item = quizData[currentQuizIndex];
+            const langItem = item[currentLang];
+            const isCorrect = selectedIndex === langItem.correct;
+
+            if (isCorrect) quizScore++;
+            document.getElementById('quiz-score-display').textContent = `${quizScore} / ${quizData.length}`;
+
+            const optionsGrid = document.getElementById('quiz-options-grid');
+            Array.from(optionsGrid.children).forEach((btn, idx) => {
+                if (idx === langItem.correct) {
+                    btn.className = "w-full p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-500/15 text-start font-extrabold text-sm sm:text-base text-emerald-700 dark:text-emerald-300 flex items-center justify-between gap-3";
+                } else if (idx === selectedIndex && !isCorrect) {
+                    btn.className = "w-full p-4 rounded-2xl border-2 border-rose-500 bg-rose-500/15 text-start font-bold text-sm sm:text-base text-rose-700 dark:text-rose-300 flex items-center justify-between gap-3";
+                } else {
+                    btn.className = "w-full p-4 rounded-2xl border border-slate-200 dark:border-slate-800 opacity-50 text-start text-sm sm:text-base flex items-center justify-between gap-3";
+                }
+            });
+
+            const fbBox = document.getElementById('quiz-feedback-box');
+            const fbTitle = document.getElementById('quiz-feedback-title');
+            const fbDesc = document.getElementById('quiz-feedback-desc');
+            const nextBtn = document.getElementById('quiz-next-btn');
+
+            fbBox.classList.remove('hidden');
+            if (isCorrect) {
+                fbBox.className = "p-5 rounded-2xl bg-emerald-500/10 border-2 border-emerald-500/40 space-y-3";
+                fbTitle.className = "font-black text-base text-emerald-600 dark:text-emerald-400";
+                fbTitle.textContent = currentLang === 'ar' ? "✅ تحليل محقق صحيح!" : "✅ Correct FBI Profiler Analysis!";
+            } else {
+                fbBox.className = "p-5 rounded-2xl bg-rose-500/10 border-2 border-rose-500/40 space-y-3";
+                fbTitle.className = "font-black text-base text-rose-600 dark:text-rose-400";
+                fbTitle.textContent = currentLang === 'ar' ? "❌ انتبه لهذه الخدعة الجسدية!" : "❌ Watch Out for This Behavioral Trap!";
+            }
+
+            fbDesc.textContent = langItem.explanation;
+            nextBtn.innerHTML = currentLang === 'ar'
+                ? (currentQuizIndex === quizData.length - 1 ? 'عرض النتيجة النهائية' : 'القضية التالية <i class="fa-solid fa-arrow-left ms-1"></i>')
+                : (currentQuizIndex === quizData.length - 1 ? 'View Final Rank' : 'Next Case <i class="fa-solid fa-arrow-right ms-1"></i>');
+        }
+
+        function nextQuizQuestion() {
+            currentQuizIndex++;
+            renderQuizQuestion();
+        }
+
+        function restartQuiz() {
+            currentQuizIndex = 0;
+            quizScore = 0;
+            renderQuizQuestion();
+        }
+
+        // 5. Render Video Timeline Cards
+        function renderTimeline() {
+            const container = document.getElementById('timeline-grid');
+            container.innerHTML = '';
+
+            timelineData.forEach(item => {
+                const langItem = item[currentLang];
+                const card = document.createElement('a');
+                card.href = `https://youtu.be/RErtCs799r4?t=${item.sec}`;
+                card.target = "_blank";
+                card.rel = "noopener noreferrer";
+                card.className = "group p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/60 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between space-y-3";
+                card.innerHTML = `
+                    <div class="space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg font-mono text-xs font-bold bg-slate-100 dark:bg-slate-800 text-amber-600 dark:text-amber-400 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                                <i class="fa-solid fa-play me-1 text-[10px]"></i>${item.time}
+                            </span>
+                            <i class="fa-solid ${item.icon} ${item.color} text-lg"></i>
+                        </div>
+                        <h3 class="font-extrabold text-base text-slate-900 dark:text-white group-hover:text-amber-500 transition-colors">
+                            ${langItem.title}
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            ${langItem.desc}
+                        </p>
+                    </div>
+                    <div class="pt-2 flex items-center text-xs font-bold text-cyan-600 dark:text-cyan-400">
+                        <span>${currentLang === 'ar' ? 'مشاهدة هذه الدقيقة على يوتيوب' : 'Watch this timestamp on YouTube'}</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square ms-1.5 text-[11px]"></i>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize all views on load
+        window.onload = function() {
+            setSceneMode('xray');
+            selectBodyPart('feet');
+            applyPreset('intro');
+            renderQuizQuestion();
+            renderTimeline();
+        };
+    </script>
+</body>
+</html>
